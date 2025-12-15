@@ -1,0 +1,30 @@
+@use "sass:list";
+@use "../01_utilities/index" as utilities;
+
+$black-color: utilities.$black-color;
+$blue-gray-color: utilities.$blue-gray-color;
+$light-blue-color: utilities.$light-blue-color;
+$beige-color: utilities.$beige-color;
+$white-color: utilities.$white-color;
+
+:root {
+  @for $i from 1 through list.length($black-color) {
+    --mlt-sys-color-black-#{$i}: #{list.nth($black-color, $i)};
+  }
+
+  @for $i from 1 through list.length($blue-gray-color) {
+    --mlt-sys-color-blue-gray-#{$i}: #{list.nth($blue-gray-color, $i)};
+  }
+
+  @for $i from 1 through list.length($light-blue-color) {
+    --mlt-sys-color-light-blue-#{$i}: #{list.nth($light-blue-color, $i)};
+  }
+
+  @for $i from 1 through list.length($beige-color) {
+    --mlt-sys-color-beige-#{$i}: #{list.nth($beige-color, $i)};
+  }
+
+  @for $i from 1 through list.length($white-color) {
+    --mlt-sys-color-white-#{$i}: #{list.nth($white-color, $i)};
+  }
+}

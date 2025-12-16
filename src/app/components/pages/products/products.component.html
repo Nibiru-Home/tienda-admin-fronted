@@ -1,0 +1,26 @@
+<div class="container">
+    <c-sidebar></c-sidebar>
+    <main class="products-content">
+        <header class="products-header">
+            <h1>Gestión de productos</h1>
+            <button class="btn-new-product" (click)="addProduct()">+ Nuevo producto</button>
+        </header>
+
+        <section class="products-grid">
+            <div class="product-card" *ngFor="let product of products">
+                <div class="card-image">
+                    <img [src]="product.image" [alt]="product.name">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{ product.name }}</h3>
+                    <p class="card-subtitle">{{ product.description }}</p>
+                    <p class="card-price">{{ product.price }} €</p>
+                    <div class="card-actions">
+                        <button class="btn-action" (click)="editProduct(product.id)">Editar</button>
+                        <button class="btn-action" (click)="deleteProduct(product.id)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>

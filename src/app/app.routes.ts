@@ -8,5 +8,6 @@ import { Index } from './components/pages/index/index';
 export const routes: Routes = [
     { path: 'admin/login', component: Login, canActivate: [guestGuard] },
     { path: 'admin', component: Index, canActivate: [authGuard] },
+    { path: 'admin/products', loadComponent: () => import('./components/pages/products/products.component').then(m => m.ProductsComponent), canActivate: [authGuard] },
     { path: '**', redirectTo: 'admin/login' }
 ];

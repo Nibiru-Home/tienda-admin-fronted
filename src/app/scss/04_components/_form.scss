@@ -9,24 +9,24 @@
     --form-title-margin-bottom: var(--cyb-sys-margin-12);
     --form-title-font-size: var(--cyb-sys-font-size-9);
     --form-title-font-weight: var(--cyb-sys-font-weight-8);
-    --form-title-color: var(--mlt-sys-color-black-5);
+    --form-title-color: var(--cyb-sys-color-black-5);
 
     --form-label-margin: var(--cyb-sys-margin-3);
     --form-label-font-size: var(--cyb-sys-font-size-5);
     --form-label-font-weight: var(--cyb-sys-font-weight-5);
-    --form-label-color: var(--mlt-sys-color-black-5);
+    --form-label-color: var(--cyb-sys-color-black-5);
 
     --form-input-padding: var(--cyb-sys-padding-6);
     --form-input-margin: var(--cyb-sys-margin-9);
-    --form-input-bg-color: var(--mlt-sys-color-light-blue-7);
+    --form-input-bg-color: var(--cyb-sys-color-light-blue-7);
     --form-input-border-radius: var(--cyb-sys-border-radius-4);
     --form-input-font-size: var(--cyb-sys-font-size-4);
 
     --form-button-padding: var(--cyb-sys-padding-7);
     --form-button-margin: var(--cyb-sys-margin-4);
-    --form-button-bg-color: var(--mlt-sys-color-blue-gray-7);
+    --form-button-bg-color: var(--cyb-sys-color-blue-gray-7);
     --form-button-bg-color-hover: var(--cyb-sys-color-light-blue-8);
-    --form-button-color: var(--mlt-sys-color-black-5);
+    --form-button-color: var(--cyb-sys-color-black-5);
     --form-button-border-radius: var(--cyb-sys-border-radius-6);
     --form-button-font-size: var(--cyb-sys-font-size-5);
     --form-button-font-weight: var(--cyb-sys-font-weight-6);
@@ -73,7 +73,7 @@
         font-size: var(--form-input-font-size);
         margin-bottom: var(--form-input-margin); // Add spacing
         font-family: 'Nunito', sans-serif;
-        color: var(--mlt-sys-color-black-5);
+        color: var(--cyb-sys-color-black-5);
 
         &:focus {
             outline: 2px solid var(--form-button-bg-color);

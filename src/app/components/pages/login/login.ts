@@ -15,14 +15,12 @@ export class Login {
   authService = inject(AuthService);
   router = inject(Router);
 
-  username = '';
+  email = '';
   password = '';
   errorMessage = '';
 
-  login(event: Event) {
-    event.preventDefault();
-
-    this.authService.login({ username: this.username, password: this.password }).subscribe({
+  login() {
+    this.authService.login({ email: this.email, password: this.password }).subscribe({
       next: (response) => {
         if (response.token) {
           this.authService.saveToken(response.token);
@@ -34,5 +32,8 @@ export class Login {
         this.errorMessage = 'Credenciales inválidas o error de conexión';
       }
     });
+    console.log(this.email, this.password);
+    console.log(this.errorMessage);
+    
   }
 }

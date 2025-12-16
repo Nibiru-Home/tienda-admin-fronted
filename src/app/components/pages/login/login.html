@@ -2,20 +2,20 @@
     <div class="form">
         <div class="form__card">
             <h2 class="form__title">Inicia sesión</h2>
-            <form (submit)="login($event)">
-                <div class="form-group">
-                    <label for="username" class="form__label">Usuario</label>
-                    <input type="text" id="username" class="form__input" placeholder="Ingresa tu usuario" [(ngModel)]="username" name="username">
-                </div>
-                <div class="form-group">
-                    <label for="password" class="form__label">Contraseña</label>
-                    <input type="password" id="password" class="form__input" placeholder="Ingresa tu contraseña" [(ngModel)]="password" name="password">
-                </div>
-                <div *ngIf="errorMessage" class="error-message">
-                    {{ errorMessage }}
-                </div>
-                <button type="submit" class="form__button">Ingresar</button>
-            </form>
+            <div class="form-group">
+                <label for="email" class="form__label">Correo electrónico</label>
+                <input type="email" id="email" class="form__input" placeholder="Ingresa tu correo" [(ngModel)]="email"
+                    name="email">
+            </div>
+            <div class="form-group">
+                <label for="password" class="form__label">Contraseña</label>
+                <input type="password" id="password" class="form__input" placeholder="Ingresa tu contraseña"
+                    [(ngModel)]="password" name="password">
+            </div>
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
+            <button (click)="login()" class="form__button">Ingresar</button>
         </div>
     </div>
 </div>

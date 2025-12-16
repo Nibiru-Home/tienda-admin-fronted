@@ -7,7 +7,7 @@ import { HTTPService } from './http.service'
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly authRoute: string = '/api/auth'
+  private readonly authRoute: string = '/user'
 
   constructor(private httpService: HTTPService) { }
 

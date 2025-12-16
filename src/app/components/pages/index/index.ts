@@ -1,6 +1,8 @@
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { CSidebar} from '../../ui/c-sidebar/c-sidebar';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-index',
@@ -9,4 +11,12 @@ import { CSidebar} from '../../ui/c-sidebar/c-sidebar';
   templateUrl: './index.html',
   styleUrl: './index.scss'
 })
-export class Index {}
+export class Index {
+  authService = inject(AuthService);
+  router = inject(Router);
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/admin/login']);
+  }
+}

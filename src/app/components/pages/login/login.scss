@@ -1,0 +1,13 @@
+@use "../../../scss/04_components/index" as components;
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--mlt-sys-color-white-7);
+}
+
+.form-group {
+    margin-bottom: var(--cyb-sys-margin-7);
+}

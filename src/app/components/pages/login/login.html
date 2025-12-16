@@ -1,6 +1,6 @@
 <div class="login-container">
     <div class="form">
-        <div class="form__card">
+        <form class="form__card" (ngSubmit)="login()">
             <h2 class="form__title">Inicia sesión</h2>
             <div class="form-group">
                 <label for="email" class="form__label">Correo electrónico</label>
@@ -15,7 +15,7 @@
             <div *ngIf="errorMessage" class="error-message">
                 {{ errorMessage }}
             </div>
-            <button (click)="login()" class="form__button">Ingresar</button>
-        </div>
+            <button type="submit" class="form__button">Ingresar</button>
+        </form>
     </div>
 </div>

@@ -11,3 +11,12 @@
 .form-group {
     margin-bottom: var(--cyb-sys-margin-7);
 }
+
+.error-message {
+    color: #D32F2F;
+    /* Standard red for error, variable --cyb-sys-color-red-5 does not exist */
+    font-size: var(--cyb-sys-font-size-3);
+    margin-bottom: var(--cyb-sys-margin-4);
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+}

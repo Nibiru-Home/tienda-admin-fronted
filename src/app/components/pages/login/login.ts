@@ -23,8 +23,17 @@ export class Login {
     this.authService.login({ email: this.email, password: this.password }).subscribe({
       next: (response) => {
         if (response.token) {
-          this.authService.saveToken(response.token);
-          this.router.navigate(['/admin']);
+          console.log('Login response:', response);
+          const role = response.user?.role?.toUpperCase()?.trim();
+          console.log('Normalized User role:', role);
+
+          if (role === 'ADMIN' || role === 'ROLE_ADMIN') {
+            this.authService.saveToken(response.token);
+            this.router.navigate(['/admin']);
+          } else {
+            console.warn('Access denied. Normalized role:', role);
+            this.errorMessage = 'Acceso denegado: No tienes permisos de administrador';
+          }
         }
       },
       error: (error) => {
@@ -34,6 +43,6 @@ export class Login {
     });
     console.log(this.email, this.password);
     console.log(this.errorMessage);
-    
+
   }
 }

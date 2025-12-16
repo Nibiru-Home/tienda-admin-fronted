@@ -1,4 +1,4 @@
-@import "./01_utilities";
-@import "./02_base";
-@import "./03_global";
-@import "./04_components";
+@use "./01_utilities";
+@use "02_base/index" as base;
+@use "03_global/index" as global;
+@use "./04_components";

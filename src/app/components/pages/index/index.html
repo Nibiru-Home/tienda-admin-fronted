@@ -11,5 +11,51 @@
     </header>
 
     <c-dashboard-stats [stats]="stats"></c-dashboard-stats>
+
+    <section class="dashboard__section">
+      <header class="dashboard__section-header">
+        <h2 class="dashboard__section-title">Últimos productos añadidos</h2>
+        <button type="button" class="dashboard__section-action" (click)="goToProducts()">
+          + Añadir nuevo producto
+        </button>
+      </header>
+
+      <div class="dashboard__table-wrapper">
+        <table class="dashboard__table">
+          <thead>
+	            <tr>
+	              <th>Nombre</th>
+	              <th>Categoría</th>
+	              <th></th>
+	            </tr>
+	          </thead>
+	          <tbody>
+              @for (product of latestProducts; track product.id) {
+                <tr>
+                  <td>
+                    <div class="dashboard__product-cell">
+                      <div class="dashboard__product-image">
+                        @if (product.image) {
+                          <img [src]="product.image" [alt]="product.name" loading="lazy" />
+                        }
+                      </div>
+                      <span class="dashboard__product-name">{{ product.name }}</span>
+                    </div>
+	                  </td>
+	                  <td>{{ product.categoryName }}</td>
+                  <td class="dashboard__action-cell">
+                    <c-product-table-actions
+                      [productId]="product.id"
+                      (view)="viewProduct($event)"
+                      (remove)="deleteProduct($event)"
+                    ></c-product-table-actions>
+                  </td>
+	                </tr>
+	              }
+            
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
 </div>

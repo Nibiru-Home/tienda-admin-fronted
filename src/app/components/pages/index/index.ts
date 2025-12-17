@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CSidebar } from '../../ui/c-sidebar/c-sidebar';
+import { CDashboardStats } from '../../ui/c-dashboard-stats/c-dashboard-stats';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [CommonModule, CSidebar],
+  imports: [CommonModule, CSidebar, CDashboardStats],
   templateUrl: './index.html',
   styleUrl: './index.scss'
 })

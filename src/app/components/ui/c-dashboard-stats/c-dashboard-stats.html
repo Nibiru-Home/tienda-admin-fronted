@@ -1,0 +1,10 @@
+<section class="dashboard__stats">
+  @for (stat of stats; track stat.label) {
+    <article class="stat-card">
+      <div class="stat-card__row">
+        <span class="stat-card__label">{{ stat.label }}</span>
+      </div>
+      <div class="stat-card__value">{{ stat.value }}</div>
+    </article>
+  }
+</section>

@@ -77,6 +77,10 @@ export class Index implements OnInit {
     this.router.navigate(['/admin/products']);
   }
 
+  goToAddProduct() {
+    this.router.navigate(['/admin/products/new']);
+  }
+
   viewProduct(productId: number) {
     this.router.navigate(['/admin/products'], { queryParams: { id: productId } });
   }

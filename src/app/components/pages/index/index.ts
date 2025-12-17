@@ -69,16 +69,12 @@ export class Index implements OnInit {
       name: String(product?.name ?? ''),
       categoryName: String(categoryName ?? ''),
       stock: Number(product?.stock ?? 0),
-      image: image.length > 0 ? image : undefined,
+      image: image.length > 0 ? `images/products/${image}` : undefined,
     };
   }
 
   goToProducts() {
     this.router.navigate(['/admin/products']);
-  }
-
-  goToAddProduct() {
-    this.router.navigate(['/admin/products/new']);
   }
 
   viewProduct(productId: number) {

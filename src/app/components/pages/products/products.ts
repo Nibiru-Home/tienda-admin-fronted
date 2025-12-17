@@ -5,10 +5,12 @@ import { CSidebar } from '../../ui/c-sidebar/c-sidebar';
 import { ProductService } from '../../../services/product.service';
 import { Product } from '../../../models/product.model';
 
+import { CProductCard } from '../../ui/c-product-card/c-product-card';
+
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, CSidebar],
+  imports: [CommonModule, CSidebar, CProductCard],
   templateUrl: './products.html',
   styleUrl: './products.scss'
 })

@@ -1,0 +1,30 @@
+:host {
+  display: inline-flex;
+}
+
+.c-product-table-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--cyb-sys-padding-4);
+}
+
+.c-product-table-actions__button {
+  padding: var(--cyb-sys-padding-3) var(--cyb-sys-padding-6);
+  border-radius: var(--cyb-sys-border-radius-7);
+  border: 1px solid var(--cyb-sys-color-beige-7);
+  background: var(--cyb-sys-color-white-9);
+  color: var(--cyb-sys-color-black-2);
+  font-size: var(--cyb-sys-font-size-4);
+  font-weight: var(--cyb-sys-font-weight-7);
+  cursor: pointer;
+}
+
+.c-product-table-actions__button:hover {
+  background: var(--cyb-sys-color-beige-9);
+}
+
+.c-product-table-actions__button--danger {
+  border-color: var(--cyb-sys-color-black-2);
+}
+

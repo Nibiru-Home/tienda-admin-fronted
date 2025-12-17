@@ -1,0 +1,102 @@
+<div class="container">
+  <c-sidebar></c-sidebar>
+
+  <main class="add-product">
+    <div class="form">
+      <form class="form__card" (ngSubmit)="submit()" #addProductForm="ngForm">
+        <h2 class="form__title">Añadir producto</h2>
+
+        <div class="form-group">
+          <label for="name" class="form__label">Nombre</label>
+          <input
+            id="name"
+            type="text"
+            class="form__input"
+            name="name"
+            [(ngModel)]="name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="description" class="form__label">Descripción</label>
+          <textarea
+            id="description"
+            class="form__input add-product__textarea"
+            name="description"
+            [(ngModel)]="description"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="price" class="form__label">Precio (€)</label>
+          <input
+            id="price"
+            type="number"
+            class="form__input"
+            name="price"
+            [(ngModel)]="price"
+            required
+            min="0"
+            step="0.01"
+          />
+        </div>
+
+        <div class="add-product__row">
+          <div class="form-group">
+            <label for="categoryId" class="form__label">ID categoría</label>
+            <input
+              id="categoryId"
+              type="number"
+              class="form__input"
+              name="categoryId"
+              [(ngModel)]="categoryId"
+              min="1"
+              step="1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="style" class="form__label">Estilo (opcional)</label>
+            <input
+              id="style"
+              type="text"
+              class="form__input"
+              name="style"
+              [(ngModel)]="style"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="image" class="form__label">Imagen (URL o nombre) (opcional)</label>
+          <input
+            id="image"
+            type="text"
+            class="form__input"
+            name="image"
+            [(ngModel)]="image"
+          />
+        </div>
+
+        @if (errorMessage) {
+          <div class="add-product__error">{{ errorMessage }}</div>
+        }
+
+        <div class="add-product__actions">
+          <button type="button" class="add-product__button" (click)="cancel()">
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="form__button add-product__button add-product__button--primary"
+            [disabled]="addProductForm.invalid || isSubmitting"
+          >
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>

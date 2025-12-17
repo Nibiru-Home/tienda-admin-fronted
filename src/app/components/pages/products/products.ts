@@ -1,6 +1,7 @@
 
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { CSidebar } from '../../ui/c-sidebar/c-sidebar';
 import { ProductService } from '../../../services/product.service';
 import { Product } from '../../../models/product.model';
@@ -16,6 +17,7 @@ import { CProductCard } from '../../ui/c-product-card/c-product-card';
 })
 export class ProductsComponent implements OnInit {
   private productService = inject(ProductService);
+  private router = inject(Router);
 
   products: Product[] = [];
 
@@ -35,7 +37,7 @@ export class ProductsComponent implements OnInit {
   }
 
   addProduct() {
-    console.log('Add product');
+    this.router.navigate(['/admin/products/new']);
   }
 
   editProduct(id: number) {

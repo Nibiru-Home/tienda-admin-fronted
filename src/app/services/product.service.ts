@@ -18,4 +18,8 @@ export class ProductService {
     deleteProduct(id: number): Observable<void> {
         return this.httpService.deleteById<void>(`${this.productsRoute}/${id}`);
     }
+
+    createProduct(payload: any): Observable<any> {
+        return this.httpService.post<any>(this.productsRoute, payload);
+    }
 }

@@ -1,4 +1,26 @@
 <div class="container">
-    <c-sidebar></c-sidebar>
-    <button (click)="logout()">Salir</button>
+  <c-sidebar></c-sidebar>
+
+  <main class="dashboard">
+    <header class="dashboard__header">
+      <h1 class="dashboard__title">Bienvenido, Administrador</h1>
+      <p class="dashboard__subtitle">
+        Gestiona tu catálogo, pedidos y contenido de forma sencilla.
+      </p>
+    </header>
+
+    <section class="dashboard__stats">
+      <article class="stat-card" *ngFor="let stat of stats">
+        <div class="stat-card__row">
+          <span class="stat-card__label">{{ stat.label }}</span>
+          
+            
+            
+          
+          
+        </div>
+        <div class="stat-card__value">{{ stat.value }}</div>
+      </article>
+    </section>
+  </main>
 </div>

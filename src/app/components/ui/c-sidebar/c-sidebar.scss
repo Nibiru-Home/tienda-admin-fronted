@@ -2,7 +2,6 @@
     --sidebar-surface: var(--cyb-sys-color-beige-8);
     --sidebar-accent: var(--cyb-sys-color-beige-5);
     --sidebar-text: var(--cyb-sys-color-blue-gray-1);
-    --sidebar-muted: var(--cyb-sys-color-blue-gray-5);
 
     min-height: 100vh;
     width: var(--cyb-sys-width-6);
@@ -43,18 +42,14 @@
     border-radius: var(--cyb-sys-border-radius-7);
     border: 1px solid transparent;
     background-color: var(--cyb-sys-color-white-9);
-    color: var(--sidebar-muted);
     font-size: var(--cyb-sys-font-size-4);
     font-weight: var(--cyb-sys-font-weight-7);
-    letter-spacing: 0.01em;
     text-decoration: none;
-    transition: background-color 180ms ease, border-color 180ms ease, color 160ms ease, box-shadow 180ms ease, transform 160ms ease, filter 180ms ease;
     overflow: hidden;
 
   }
 
   .c-sidebar a:hover {
-    color: var(--sidebar-text);
     background-color: var(--cyb-sys-color-white-8);
     border-color: var(--sidebar-accent);
     box-shadow: var(--cyb-sys-shadow-2);
@@ -62,7 +57,6 @@
   }
 
   .c-sidebar a.is-active {
-    color: var(--sidebar-text);
     background-color: var(--cyb-sys-color-white-9);
     border-color: var(--sidebar-accent);
     box-shadow: var(--cyb-sys-shadow-3);
@@ -72,7 +66,6 @@
   .c-sidebar a img {
     width: 22px;
     height: 22px;
-    transition: filter 160ms ease, transform 160ms ease;
   }
 
   .c-sidebar a:hover img,
@@ -88,6 +81,38 @@
 
   .c-sidebar hr {
     display: none;
+  }
+
+  .c-sidebar__logout {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .c-sidebar__logout-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--cyb-sys-padding-5);
+    padding: var(--cyb-sys-padding-5) var(--cyb-sys-padding-6);
+    border-radius: var(--cyb-sys-border-radius-7);
+    border: 1px solid var(--sidebar-accent);
+    background: transparent;
+    font-size: var(--cyb-sys-font-size-4);
+    font-weight: var(--cyb-sys-font-weight-7);
+    cursor: pointer;
+  }
+
+  .c-sidebar__logout-button:hover {
+    background-color: var(--cyb-sys-color-white-8);
+    border-color: var(--sidebar-accent);
+    box-shadow: var(--cyb-sys-shadow-2);
+    transform: translateY(-1px);
+  }
+
+  .c-sidebar__logout-button img {
+    width: 20px;
+    height: 20px;
   }
 
   .c-sidebar__item {

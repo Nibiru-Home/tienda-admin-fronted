@@ -41,7 +41,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        
+        margin: 0 auto; // Added for centering
     }
 
     &__title {
@@ -59,18 +59,19 @@
         font-size: var(--form-label-font-size);
         font-weight: var(--form-label-font-weight);
         color: var(--form-label-color);
+        display: block; // Ensure it behaves like a label
         font-family: 'Raleway', sans-serif;
     }
 
     &__input {
-   
+        width: 100%; // Ensure it fills container
         box-sizing: border-box;
         padding: var(--form-input-padding);
         background-color: var(--form-input-bg-color);
         border: 1px solid transparent;
         border-radius: var(--form-input-border-radius);
         font-size: var(--form-input-font-size);
-     
+        margin-bottom: var(--form-input-margin); // Add spacing
         font-family: 'Nunito', sans-serif;
         color: var(--cyb-sys-color-black-5);
 

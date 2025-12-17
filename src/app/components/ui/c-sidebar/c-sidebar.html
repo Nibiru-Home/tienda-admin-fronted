@@ -9,6 +9,7 @@
       class="l-flex l-flex__align-items--center"
       [routerLink]="item.route"
       routerLinkActive="is-active"
+      [routerLinkActiveOptions]="{ exact: item.route === '/admin' }"
     >
       <img [src]="'/icons/' + item.icon">
       <span>{{ item.name }}</span>

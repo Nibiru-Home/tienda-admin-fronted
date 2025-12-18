@@ -78,7 +78,7 @@ export class Index implements OnInit {
   }
 
   viewProduct(productId: number) {
-    this.router.navigate(['/admin/products'], { queryParams: { id: productId } });
+    this.router.navigate(['/admin/products', productId]);
   }
 
   deleteProduct(productId: number) {

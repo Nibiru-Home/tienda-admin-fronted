@@ -10,5 +10,5 @@ import { Component, Input } from '@angular/core';
 })
 export class CFormCard {
   @Input() title = '';
+  @Input() cardWidth: string | null = null;
 }
-

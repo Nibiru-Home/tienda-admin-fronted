@@ -1,4 +1,4 @@
-<div class="product-card">
+<div class="product-card" (click)="onView()">
     <div class="card-image">
         <img [src]="imageUrl" [alt]="product.name">
     </div>
@@ -7,8 +7,8 @@
         <p class="card-subtitle">{{ product.description }}</p>
         <p class="card-price">{{ product.price }} €</p>
         <div class="card-actions">
-            <button class="btn-action" (click)="onEdit()">Editar</button>
-            <button class="btn-action" (click)="onDelete()">Eliminar</button>
+            <button class="btn-action" type="button" (click)="onEdit($event)">Editar</button>
+            <button class="btn-action" type="button" (click)="onDelete($event)">Eliminar</button>
         </div>
     </div>
 </div>

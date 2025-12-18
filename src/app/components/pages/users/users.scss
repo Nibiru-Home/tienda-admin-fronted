@@ -1,0 +1,87 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--cyb-sys-color-beige-9);
+}
+
+.users {
+  flex: 1;
+  padding: var(--cyb-sys-padding-10) var(--cyb-sys-padding-11);
+  background: var(--cyb-sys-color-white-9);
+  color: var(--cyb-sys-color-black-2);
+}
+
+.users__section {
+  margin-top: var(--cyb-sys-padding-2);
+}
+
+.users__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cyb-sys-padding-6);
+  margin-bottom: var(--cyb-sys-padding-6);
+}
+
+.users__section-title {
+  margin: 0;
+  font-size: var(--cyb-sys-font-size-7);
+  font-weight: var(--cyb-sys-font-weight-8);
+  color: var(--cyb-sys-color-black-2);
+}
+
+.users__table-empty {
+  padding: var(--cyb-sys-padding-9) var(--cyb-sys-padding-8);
+  text-align: center;
+  color: var(--cyb-sys-color-blue-gray-4);
+  font-family: 'Nunito', sans-serif;
+}
+
+.users__error {
+  padding: var(--cyb-sys-padding-9) var(--cyb-sys-padding-8);
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  color: #d32f2f;
+}
+
+.users__table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--cyb-sys-border-radius-8);
+  border: 1px solid var(--cyb-sys-color-beige-7);
+  background: var(--cyb-sys-color-white-9);
+  box-shadow: var(--cyb-sys-shadow-2);
+}
+
+.users__table {
+  width: 100%;
+  min-width: 780px;
+}
+
+.users__table th,
+.users__table td {
+  padding: var(--cyb-sys-padding-6) var(--cyb-sys-padding-8);
+  text-align: left;
+}
+
+.users__table th {
+  font-size: var(--cyb-sys-font-size-4);
+  font-weight: var(--cyb-sys-font-weight-7);
+  color: var(--cyb-sys-color-blue-gray-4);
+}
+
+.users__table td {
+  border-top: 1px solid var(--cyb-sys-color-beige-7);
+  font-size: var(--cyb-sys-font-size-5);
+  font-weight: var(--cyb-sys-font-weight-5);
+  color: var(--cyb-sys-color-black-2);
+}
+
+.users__table tbody tr:hover {
+  background: var(--cyb-sys-color-beige-9);
+}
+
+@media (max-width: 960px) {
+  .users {
+    padding: var(--cyb-sys-padding-9) var(--cyb-sys-padding-8);
+  }
+}

@@ -20,6 +20,17 @@ export class ProductsComponent implements OnInit {
   private router = inject(Router);
 
   products: Product[] = [];
+  categories: string[] = [];
+  selectedCategory: string = '';
+
+  get filteredProducts(): Product[] {
+    if (!this.selectedCategory) {
+      return this.products;
+    }
+    return this.products.filter(product =>
+      product.category.some(cat => cat.name === this.selectedCategory)
+    );
+  }
 
   ngOnInit() {
     this.loadProducts();
@@ -29,11 +40,18 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts().subscribe({
       next: (data) => {
         this.products = data;
+        // Extract unique categories and filter out any falsy values
+        const allCategories = data.flatMap(p => p.category).map(c => c.name);
+        this.categories = [...new Set(allCategories.filter(c => !!c))];
       },
       error: (err) => {
         console.error('Error loading products', err);
       }
     });
+  }
+
+  filterCategory(category: string) {
+    this.selectedCategory = category;
   }
 
   addProduct() {

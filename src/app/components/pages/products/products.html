@@ -6,10 +6,17 @@
             <button class="btn-new-product" (click)="addProduct()">+ Nuevo producto</button>
         </header>
 
+        <section class="category-filters" *ngIf="categories.length > 0">
+            <button [class.active]="selectedCategory === ''" (click)="filterCategory('')">Todas</button>
+            <button *ngFor="let category of categories" [class.active]="selectedCategory === category"
+                (click)="filterCategory(category)">
+                {{ category }}
+            </button>
+        </section>
+
         <section class="products-grid">
-            <c-product-card *ngFor="let product of products" [product]="product" (edit)="editProduct($event)"
-                (view)="viewProduct($event)"
-                (delete)="deleteProduct($event)">
+            <c-product-card *ngFor="let product of filteredProducts" [product]="product" (edit)="editProduct($event)"
+                (view)="viewProduct($event)" (delete)="deleteProduct($event)">
             </c-product-card>
         </section>
     </main>

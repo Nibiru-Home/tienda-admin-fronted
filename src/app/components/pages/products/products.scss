@@ -55,6 +55,36 @@
     }
 }
 
+.category-filters {
+    display: flex;
+    gap: var(--cyb-sys-padding-8);
+    margin-bottom: var(--cyb-sys-margin-10);
+    flex-wrap: wrap;
+
+    button {
+        padding: var(--cyb-sys-padding-5) var(--cyb-sys-padding-8);
+        border: 1px solid var(--cyb-sys-color-blue-gray-5);
+        border-radius: var(--cyb-sys-border-radius-5);
+        background: transparent;
+        color: var(--cyb-sys-color-black-2);
+        font-family: 'Nunito', sans-serif;
+        font-size: var(--cyb-sys-font-size-4);
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: var(--cyb-sys-color-light-blue-8);
+            border-color: var(--cyb-sys-color-blue-gray-7);
+        }
+
+        &.active {
+            background-color: var(--cyb-sys-color-blue-gray-7);
+            color: var(--cyb-sys-color-black-4);
+            border-color: var(--cyb-sys-color-blue-gray-7);
+        }
+    }
+}
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

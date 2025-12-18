@@ -28,11 +28,12 @@ export class Users implements OnInit {
 
     this.authService.getUsers().subscribe({
       next: (users) => {
+        console.log('Raw users response:', users);
         const normalized = (users as unknown as any[])
-          .map((user) => this.normalizeUser(user))
-          .filter((user) => user.id > 0);
+          .map((user) => this.normalizeUser(user));
+        console.log('Normalized users:', normalized);
 
-        this.users = normalized.sort((a, b) => a.id - b.id);
+        this.users = normalized;
         this.isLoading = false;
       },
       error: (err) => {
@@ -45,11 +46,11 @@ export class Users implements OnInit {
 
   private normalizeUser(user: any): User {
     return {
-      id: Number(user?.id ?? 0),
-      username: String(user?.username ?? ''),
+      id: String(user?.id ?? ''),
       email: String(user?.email ?? ''),
       name: String(user?.name ?? ''),
-      surname: String(user?.surname ?? ''),
+      address: String(user?.address ?? ''),
+      phone: String(user?.phone ?? ''),
       role: user?.role ? String(user.role) : undefined,
     };
   }

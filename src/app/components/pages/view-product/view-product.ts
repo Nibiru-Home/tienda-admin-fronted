@@ -1,26 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { CSidebar } from '../../ui/c-sidebar/c-sidebar';
 import { CFormCard } from '../../ui/c-form-card/c-form-card';
 
-type ProductDetails = {
-  id: number;
-  name: string;
-  description: string;
-  price: number | null;
-  stock: number | null;
-  image: string | null;
-  categoryId: number | null;
-  categoryName: string | null;
-  styles: string[];
-};
-
 @Component({
   selector: 'app-view-product',
   standalone: true,
-  imports: [CommonModule, CSidebar, CFormCard],
+  imports: [CommonModule, FormsModule, CSidebar, CFormCard],
   templateUrl: './view-product.html',
   styleUrl: './view-product.scss',
 })
@@ -30,10 +19,19 @@ export class ViewProduct implements OnInit {
   private productService = inject(ProductService);
 
   isLoading = true;
+  isLoaded = false;
+  isSubmitting = false;
   isDeleting = false;
   errorMessage = '';
 
-  product: ProductDetails | null = null;
+  productId: number | null = null;
+
+  name = '';
+  description = '';
+  price: number | null = null;
+  categoryId: number | null = null;
+  style = '';
+  image = '';
 
   private readonly imagesBaseUrl = 'http://localhost:4200/images/products/';
 
@@ -47,89 +45,58 @@ export class ViewProduct implements OnInit {
       return;
     }
 
+    this.productId = id;
     this.loadProduct(id);
   }
 
   private loadProduct(id: number) {
     this.isLoading = true;
+    this.isLoaded = false;
     this.errorMessage = '';
 
     this.productService.getProductById(id).subscribe({
       next: (product) => {
-        this.product = this.normalizeProduct(product);
+        this.hydrateForm(product);
         this.isLoading = false;
+        this.isLoaded = true;
       },
       error: (err) => {
         console.error('Error loading product', err);
         this.errorMessage = 'No se pudo cargar el producto.';
         this.isLoading = false;
+        this.isLoaded = false;
       },
     });
   }
 
-  private normalizeProduct(raw: any): ProductDetails {
-    const category = this.normalizeCategory(raw?.category);
-    const styles = this.normalizeStyles(raw?.styles);
+  private hydrateForm(product: any) {
+    this.name = String(product?.name ?? '');
+    this.description = String(product?.description ?? '');
+    this.price = product?.price ?? null;
+    this.image = String(product?.image ?? '');
 
-    return {
-      id: this.toNumber(raw?.id) ?? 0,
-      name: String(raw?.name ?? ''),
-      description: String(raw?.description ?? ''),
-      price: this.toNumber(raw?.price),
-      stock: this.toNumber(raw?.stock),
-      image: this.toStringOrNull(raw?.image),
-      categoryId: category.id,
-      categoryName: category.name,
-      styles,
-    };
-  }
+    const category = product?.category;
+    const normalizedCategory = Array.isArray(category) ? category[0] : category;
 
-  private normalizeCategory(category: any): { id: number | null; name: string | null } {
-    const normalized = Array.isArray(category) ? category[0] : category;
-
-    if (typeof normalized === 'string') {
-      const value = normalized.trim();
-      return { id: null, name: value.length > 0 ? value : null };
+    if (typeof normalizedCategory === 'string') {
+      this.categoryId = null;
+    } else if (normalizedCategory && typeof normalizedCategory === 'object') {
+      this.categoryId = normalizedCategory?.id ? Number(normalizedCategory.id) : null;
+    } else {
+      this.categoryId = null;
     }
 
-    if (normalized && typeof normalized === 'object') {
-      const id = this.toNumber(normalized?.id);
-      const name = this.toStringOrNull(normalized?.name);
-      return { id, name };
+    const styles = product?.styles;
+    if (Array.isArray(styles) && styles.length > 0) {
+      this.style = String(styles[0] ?? '');
+    } else {
+      this.style = '';
     }
-
-    return { id: null, name: null };
   }
 
-  private normalizeStyles(styles: any): string[] {
-    if (Array.isArray(styles)) {
-      return styles.map((style) => String(style ?? '').trim()).filter((style) => style.length > 0);
-    }
+  get imagePreviewUrl(): string {
+    const image = this.image?.trim();
 
-    if (typeof styles === 'string') {
-      const value = styles.trim();
-      return value.length > 0 ? [value] : [];
-    }
-
-    return [];
-  }
-
-  private toNumber(value: unknown): number | null {
-    const numeric = Number(value);
-    return Number.isFinite(numeric) ? numeric : null;
-  }
-
-  private toStringOrNull(value: unknown): string | null {
-    if (typeof value !== 'string') {
-      return null;
-    }
-
-    const trimmed = value.trim();
-    return trimmed.length > 0 ? trimmed : null;
-  }
-
-  get imageUrl(): string {
-    const image = this.product?.image;
     if (!image) {
       return 'images/error-404.svg';
     }
@@ -141,48 +108,55 @@ export class ViewProduct implements OnInit {
     return `${this.imagesBaseUrl}${image}`;
   }
 
-  get categoryLabel(): string {
-    if (!this.product) {
-      return '-';
-    }
-
-    const { categoryId, categoryName } = this.product;
-
-    if (categoryName && categoryId) {
-      return `${categoryName} (#${categoryId})`;
-    }
-
-    if (categoryName) {
-      return categoryName;
-    }
-
-    if (categoryId) {
-      return `#${categoryId}`;
-    }
-
-    return '-';
-  }
-
-  get stylesLabel(): string {
-    const styles = this.product?.styles ?? [];
-    return styles.length > 0 ? styles.join(', ') : '-';
-  }
-
   goBack() {
     this.router.navigate(['/admin/products']);
   }
 
-  goToEdit() {
-    const id = this.product?.id;
-    if (!id) {
+  save() {
+    if (!this.productId) {
+      this.errorMessage = 'Producto inválido.';
       return;
     }
 
-    this.router.navigate(['/admin/products', id, 'edit']);
+    this.errorMessage = '';
+
+    const price = Number(this.price);
+
+    if (!this.name.trim() || !this.description.trim() || Number.isNaN(price)) {
+      this.errorMessage = 'Revisa los campos obligatorios.';
+      return;
+    }
+
+    const categoryId = this.categoryId ? Number(this.categoryId) : null;
+    const style = this.style.trim();
+    const image = this.image.trim();
+
+    const payload = {
+      name: this.name.trim(),
+      description: this.description.trim(),
+      price,
+      category: categoryId ? [{ id: categoryId }] : [],
+      styles: style ? [style] : [],
+      image: image || undefined,
+    };
+
+    this.isSubmitting = true;
+
+    this.productService.updateProduct(this.productId, payload).subscribe({
+      next: () => {
+        this.isSubmitting = false;
+        this.loadProduct(this.productId!);
+      },
+      error: (err) => {
+        console.error('Error updating product', err);
+        this.isSubmitting = false;
+        this.errorMessage = 'No se pudo guardar el producto.';
+      },
+    });
   }
 
   deleteProduct() {
-    const id = this.product?.id;
+    const id = this.productId;
     if (!id || this.isDeleting) {
       return;
     }
@@ -207,4 +181,3 @@ export class ViewProduct implements OnInit {
     });
   }
 }
-

@@ -12,7 +12,6 @@ type LatestProductRow = {
   id: number;
   name: string;
   categoryName: string;
-  stock: number;
   image?: string;
 };
 
@@ -96,7 +95,6 @@ export class Index implements OnInit {
       id: Number(product?.id ?? 0),
       name: String(product?.name ?? ''),
       categoryName: String(categoryName ?? ''),
-      stock: Number(product?.stock ?? 0),
       image: image.length > 0 ? `images/products/${image}` : undefined,
     };
   }

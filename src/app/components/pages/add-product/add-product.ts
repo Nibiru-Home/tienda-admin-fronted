@@ -49,7 +49,6 @@ export class AddProduct {
       name: this.name.trim(),
       description: this.description.trim(),
       price,
-      stock: 0,
       category: categoryId ? [{ id: categoryId }] : [],
       styles: style ? [style] : [],
       image: image || undefined

@@ -2,10 +2,8 @@
   <c-sidebar></c-sidebar>
 
   <main class="add-product">
-    <div class="form">
-      <form class="form__card" (ngSubmit)="submit()" #addProductForm="ngForm">
-        <h2 class="form__title">Añadir producto</h2>
-
+    <c-form-card title="Añadir producto">
+      <form (ngSubmit)="submit()" #addProductForm="ngForm">
         <div class="form-group">
           <label for="name" class="form__label">Nombre</label>
           <input
@@ -97,6 +95,6 @@
           </button>
         </div>
       </form>
-    </div>
+    </c-form-card>
   </main>
 </div>

@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CSidebar } from '../../ui/c-sidebar/c-sidebar';
 import { ProductService } from '../../../services/product.service';
+import { CFormCard } from '../../ui/c-form-card/c-form-card';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [CommonModule, FormsModule, CSidebar],
+  imports: [CommonModule, FormsModule, CSidebar, CFormCard],
   templateUrl: './add-product.html',
   styleUrl: './add-product.scss'
 })

@@ -41,7 +41,7 @@ export class ProductsComponent implements OnInit {
   }
 
   editProduct(id: number) {
-    console.log('Edit product', id);
+    this.router.navigate(['/admin/products', id, 'edit']);
   }
 
   deleteProduct(id: number) {

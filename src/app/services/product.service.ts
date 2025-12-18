@@ -22,4 +22,12 @@ export class ProductService {
     createProduct(payload: any): Observable<any> {
         return this.httpService.post<any>(this.productsRoute, payload);
     }
+
+    getProductById(id: number): Observable<any> {
+        return this.httpService.getById<any>(`${this.productsRoute}/${id}`);
+    }
+
+    updateProduct(id: number, payload: any): Observable<any> {
+        return this.httpService.update<any>(`${this.productsRoute}/${id}`, payload);
+    }
 }

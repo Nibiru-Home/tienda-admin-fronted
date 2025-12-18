@@ -11,6 +11,7 @@ import { Product } from '../../../models/product.model';
 })
 export class CProductCard {
     @Input({ required: true }) product!: Product;
+    @Output() view = new EventEmitter<number>();
     @Output() edit = new EventEmitter<number>();
     @Output() delete = new EventEmitter<number>();
 
@@ -26,11 +27,17 @@ export class CProductCard {
         return `${this.baseUrl}${this.product.image}`;
     }
 
-    onEdit() {
+    onView() {
+        this.view.emit(this.product.id);
+    }
+
+    onEdit(event?: Event) {
+        event?.stopPropagation();
         this.edit.emit(this.product.id);
     }
 
-    onDelete() {
+    onDelete(event?: Event) {
+        event?.stopPropagation();
         this.delete.emit(this.product.id);
     }
 }

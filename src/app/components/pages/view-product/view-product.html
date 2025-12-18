@@ -1,0 +1,85 @@
+<div class="container">
+  <c-sidebar></c-sidebar>
+
+  <main class="view-product">
+    <c-form-card title="Detalle del producto" cardWidth="var(--cyb-sys-width-12)">
+      @if (isLoading) {
+        <div class="view-product__loading">Cargando producto...</div>
+      } @else if (errorMessage) {
+        <div class="view-product__error">{{ errorMessage }}</div>
+        <div class="view-product__actions">
+          <button type="button" class="view-product__button" (click)="goBack()">Volver</button>
+        </div>
+      } @else if (product) {
+        <div class="view-product__content">
+          <div class="view-product__media">
+            <img class="view-product__image" [src]="imageUrl" [alt]="product.name" loading="lazy" />
+          </div>
+
+          <div class="view-product__details">
+            <h3 class="view-product__name">{{ product.name }}</h3>
+            <p class="view-product__description">{{ product.description }}</p>
+
+            <dl class="view-product__meta">
+              <div class="view-product__meta-row">
+                <dt>ID</dt>
+                <dd>{{ product.id }}</dd>
+              </div>
+              <div class="view-product__meta-row">
+                <dt>Precio</dt>
+                <dd>
+                  @if (product.price !== null) {
+                    {{ product.price | number: '1.2-2' }} €
+                  } @else {
+                    -
+                  }
+                </dd>
+              </div>
+              <div class="view-product__meta-row">
+                <dt>Stock</dt>
+                <dd>
+                  @if (product.stock !== null) {
+                    {{ product.stock }}
+                  } @else {
+                    -
+                  }
+                </dd>
+              </div>
+              <div class="view-product__meta-row">
+                <dt>Categoría</dt>
+                <dd>{{ categoryLabel }}</dd>
+              </div>
+              <div class="view-product__meta-row">
+                <dt>Estilos</dt>
+                <dd>{{ stylesLabel }}</dd>
+              </div>
+              <div class="view-product__meta-row">
+                <dt>Imagen</dt>
+                <dd>{{ product.image ?? '-' }}</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        @if (errorMessage) {
+          <div class="view-product__error view-product__error--inline">{{ errorMessage }}</div>
+        }
+
+        <div class="view-product__actions">
+          <button type="button" class="view-product__button" (click)="goToEdit()" [disabled]="isDeleting">
+            Editar
+          </button>
+          <button
+            type="button"
+            class="view-product__button view-product__button--danger"
+            (click)="deleteProduct()"
+         
+          >
+            Eliminar
+          </button>
+        </div>
+      }
+    </c-form-card>
+  </main>
+</div>
+

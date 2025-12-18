@@ -1,4 +1,4 @@
-<div class="form">
+<div class="form" [style.--form-card-width]="cardWidth">
   <div class="form__card">
     @if (title) {
       <h2 class="form__title">{{ title }}</h2>
@@ -7,4 +7,3 @@
     <ng-content></ng-content>
   </div>
 </div>
-

@@ -44,6 +44,10 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['/admin/products', id, 'edit']);
   }
 
+  viewProduct(id: number) {
+    this.router.navigate(['/admin/products', id]);
+  }
+
   deleteProduct(id: number) {
     if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
       this.productService.deleteProduct(id).subscribe({

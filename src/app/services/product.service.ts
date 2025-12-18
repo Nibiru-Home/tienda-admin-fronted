@@ -30,4 +30,8 @@ export class ProductService {
     updateProduct(id: number, payload: any): Observable<any> {
         return this.httpService.update<any>(`${this.productsRoute}/${id}`, payload);
     }
+
+    getProductsCount(): Observable<number> {
+        return this.httpService.get<number>(`${this.productsRoute}/count`);
+    }
 }

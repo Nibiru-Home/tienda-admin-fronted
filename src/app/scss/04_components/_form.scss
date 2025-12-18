@@ -1,12 +1,12 @@
 .form {
     --form-card-bg-color: var(--cyb-sys-color-white-9);
-    --form-card-padding: var(--cyb-sys-padding-12);
+    --form-card-padding: var(--cyb-sys-padding-10);
     --form-card-border-radius: var(--cyb-sys-border-radius-6);
     --form-box-shadow: 0 0 15px 0 rgb(0 0 0 / 0.15);
     --form-card-width: var(--cyb-sys-width-9);
 
     --form-title-text-align: center;
-    --form-title-margin-bottom: var(--cyb-sys-margin-12);
+    --form-title-margin-bottom: var(--cyb-sys-margin-9);
     --form-title-font-size: var(--cyb-sys-font-size-9);
     --form-title-font-weight: var(--cyb-sys-font-weight-8);
     --form-title-color: var(--cyb-sys-color-black-5);
@@ -17,8 +17,8 @@
     --form-label-color: var(--cyb-sys-color-black-5);
 
     --form-input-padding: var(--cyb-sys-padding-6);
-    --form-input-margin: var(--cyb-sys-margin-9);
-    --form-input-bg-color: var(--cyb-sys-color-light-blue-7);
+    --form-input-bg-color: var(--cyb-sys-color-white-9);
+    --form-input-border-color: var(--cyb-sys-color-beige-7);
     --form-input-border-radius: var(--cyb-sys-border-radius-4);
     --form-input-font-size: var(--cyb-sys-font-size-4);
 
@@ -68,16 +68,11 @@
         box-sizing: border-box;
         padding: var(--form-input-padding);
         background-color: var(--form-input-bg-color);
-        border: 1px solid transparent;
+        border: 1px solid var(--form-input-border-color);
         border-radius: var(--form-input-border-radius);
         font-size: var(--form-input-font-size);
-        margin-bottom: var(--form-input-margin); // Add spacing
         font-family: 'Nunito', sans-serif;
         color: var(--cyb-sys-color-black-5);
-
-        &:focus {
-            outline: 2px solid var(--form-button-bg-color);
-        }
     }
 
     &__button {

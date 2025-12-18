@@ -35,7 +35,7 @@
 .view-product__content {
   display: grid;
   grid-template-columns: 320px 1fr;
-  gap: var(--cyb-sys-padding-9);
+  gap: var(--cyb-sys-padding-7);
   align-items: start;
 }
 
@@ -57,56 +57,35 @@
 .view-product__details {
   display: flex;
   flex-direction: column;
-  gap: var(--cyb-sys-padding-6);
+  gap: var(--cyb-sys-padding-5);
   font-family: 'Nunito', sans-serif;
   color: var(--cyb-sys-color-black-2);
 }
 
-.view-product__name {
-  margin: 0;
-  font-family: 'Cinzel', serif;
-  font-size: var(--cyb-sys-font-size-8);
-  font-weight: var(--cyb-sys-font-weight-8);
-  color: var(--cyb-sys-color-black-2);
+.form-group {
+  margin-bottom: var(--cyb-sys-margin-6);
 }
 
-.view-product__description {
-  margin: 0;
-  color: var(--cyb-sys-color-blue-gray-4);
-  font-size: var(--cyb-sys-font-size-5);
-  line-height: 1.4;
-}
-
-.view-product__meta {
-  margin: 0;
+.view-product__row {
   display: grid;
-  gap: var(--cyb-sys-padding-4);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--cyb-sys-padding-6);
 }
 
-.view-product__meta-row {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: var(--cyb-sys-padding-4);
-  align-items: baseline;
-  padding: var(--cyb-sys-padding-4) 0;
-  border-top: 1px solid var(--cyb-sys-color-beige-8);
+.view-product__textarea {
+  min-height: 140px;
+  resize: vertical;
 }
 
-.view-product__meta-row:first-child {
-  border-top: none;
-  padding-top: 0;
+.view-product input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
 }
 
-.view-product__meta dt {
+.view-product input[type='number']::-webkit-outer-spin-button,
+.view-product input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
   margin: 0;
-  font-weight: var(--cyb-sys-font-weight-7);
-  color: var(--cyb-sys-color-black-2);
-}
-
-.view-product__meta dd {
-  margin: 0;
-  color: var(--cyb-sys-color-black-5);
-  word-break: break-word;
 }
 
 @media (max-width: 960px) {
@@ -115,6 +94,10 @@
   }
 
   .view-product__content {
+    grid-template-columns: 1fr;
+  }
+
+  .view-product__row {
     grid-template-columns: 1fr;
   }
 

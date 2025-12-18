@@ -5,83 +5,129 @@
     <c-form-card title="Detalle del producto" cardWidth="var(--cyb-sys-width-12)">
       @if (isLoading) {
         <div class="view-product__loading">Cargando producto...</div>
-      } @else if (errorMessage) {
-        <div class="view-product__error">{{ errorMessage }}</div>
+      } @else if (!isLoaded) {
+        @if (errorMessage) {
+          <div class="view-product__error">{{ errorMessage }}</div>
+        }
         <div class="btn-row">
           <button type="button" class="btn" (click)="goBack()">Volver</button>
         </div>
-      } @else if (product) {
-        <div class="view-product__content">
-          <div class="view-product__media">
-            <img class="view-product__image" [src]="imageUrl" [alt]="product.name" loading="lazy" />
+      } @else {
+        <form (ngSubmit)="save()" #productForm="ngForm">
+          <div class="view-product__content">
+            <div class="view-product__media">
+              <img class="view-product__image" [src]="imagePreviewUrl" [alt]="name" loading="lazy" />
+            </div>
+
+            <div class="view-product__details">
+              <div class="view-product__row">
+                <div class="form-group">
+                  <label for="id" class="form__label">ID</label>
+                  <input id="id" type="number" class="form__input" [value]="productId ?? ''" disabled />
+                </div>
+
+                <div class="form-group">
+                  <label for="price" class="form__label">Precio (€)</label>
+                  <input
+                    id="price"
+                    type="number"
+                    class="form__input"
+                    name="price"
+                    [(ngModel)]="price"
+                    required
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="name" class="form__label">Nombre</label>
+                <input
+                  id="name"
+                  type="text"
+                  class="form__input"
+                  name="name"
+                  [(ngModel)]="name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="description" class="form__label">Descripción</label>
+                <textarea
+                  id="description"
+                  class="form__input view-product__textarea"
+                  name="description"
+                  [(ngModel)]="description"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="view-product__row">
+                <div class="form-group">
+                  <label for="categoryId" class="form__label">ID categoría</label>
+                  <input
+                    id="categoryId"
+                    type="number"
+                    class="form__input"
+                    name="categoryId"
+                    [(ngModel)]="categoryId"
+                    min="1"
+                    step="1"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="style" class="form__label">Estilo (opcional)</label>
+                  <input
+                    id="style"
+                    type="text"
+                    class="form__input"
+                    name="style"
+                    [(ngModel)]="style"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="image" class="form__label">Imagen (URL o nombre)</label>
+                <input
+                  id="image"
+                  type="text"
+                  class="form__input"
+                  name="image"
+                  [(ngModel)]="image"
+                />
+              </div>
+            </div>
           </div>
 
-          <div class="view-product__details">
-            <h3 class="view-product__name">{{ product.name }}</h3>
-            <p class="view-product__description">{{ product.description }}</p>
+          @if (errorMessage) {
+            <div class="view-product__error view-product__error--inline">{{ errorMessage }}</div>
+          }
 
-            <dl class="view-product__meta">
-              <div class="view-product__meta-row">
-                <dt>ID</dt>
-                <dd>{{ product.id }}</dd>
-              </div>
-              <div class="view-product__meta-row">
-                <dt>Precio</dt>
-                <dd>
-                  @if (product.price !== null) {
-                    {{ product.price | number: '1.2-2' }} €
-                  } @else {
-                    -
-                  }
-                </dd>
-              </div>
-              <div class="view-product__meta-row">
-                <dt>Stock</dt>
-                <dd>
-                  @if (product.stock !== null) {
-                    {{ product.stock }}
-                  } @else {
-                    -
-                  }
-                </dd>
-              </div>
-              <div class="view-product__meta-row">
-                <dt>Categoría</dt>
-                <dd>{{ categoryLabel }}</dd>
-              </div>
-              <div class="view-product__meta-row">
-                <dt>Estilos</dt>
-                <dd>{{ stylesLabel }}</dd>
-              </div>
-              <div class="view-product__meta-row">
-                <dt>Imagen</dt>
-                <dd>{{ product.image ?? '-' }}</dd>
-              </div>
-            </dl>
+          <div class="btn-row">
+            <button type="button" class="btn" (click)="deleteProduct()" [disabled]="isSubmitting || isDeleting">
+              @if (isDeleting) {
+                Eliminando...
+              } @else {
+                Eliminar
+              }
+            </button>
+            <button
+              type="submit"
+              class="btn"
+              [disabled]="productForm.invalid || isSubmitting || isDeleting"
+            >
+              @if (isSubmitting) {
+                Guardando...
+              } @else {
+                Guardar
+              }
+            </button>
           </div>
-        </div>
-
-        @if (errorMessage) {
-          <div class="view-product__error view-product__error--inline">{{ errorMessage }}</div>
-        }
-
-        <div class="btn-row">
-          <button type="button" class="btn" (click)="goToEdit()" [disabled]="isDeleting">
-            Editar
-          </button>
-          <button
-            type="button"
-            class="btn"
-            (click)="deleteProduct()"
-            [disabled]="isDeleting"
-          >
-            @if (isDeleting) {
-              Eliminando...
-            } @else {
-              Eliminar
-            }
-          </button>
-        </div>
+        </form>
       }
     </c-form-card>
   </main>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { AuthResponse, LoginRequest, RegisterRequest } from '../models/auth.model'
+import { User } from '../models/user.model'
 import { HTTPService } from './http.service'
 
 @Injectable({
@@ -46,5 +47,9 @@ export class AuthService {
 
   getUsersCount(): Observable<number> {
     return this.httpService.get<number>(`${this.authRoute}/count`)
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.httpService.getAll<User>(this.authRoute)
   }
 }

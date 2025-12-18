@@ -8,6 +8,7 @@ import { Error404 } from './components/pages/error-404/error-404';
 import { ProductsComponent } from './components/pages/products/products';
 import { AddProduct } from './components/pages/add-product/add-product';
 import { ViewProduct } from './components/pages/view-product/view-product';
+import { Users } from './components/pages/users/users';
 
 export const routes: Routes = [
     { path: 'admin/login', component: Login, canActivate: [guestGuard] },
@@ -15,6 +16,7 @@ export const routes: Routes = [
     { path: 'admin/products/new', component: AddProduct, canActivate: [authGuard] },
     { path: 'admin/products/:id', component: ViewProduct, canActivate: [authGuard] },
     { path: 'admin/products', component: ProductsComponent, canActivate: [authGuard] },
+    { path: 'admin/users', component: Users, canActivate: [authGuard] },
     { path: 'admin/orders', component: Error404, canActivate: [authGuard] },
     { path: 'admin/categories', component: Error404, canActivate: [authGuard] },
     { path: '**', redirectTo: 'admin/login' }

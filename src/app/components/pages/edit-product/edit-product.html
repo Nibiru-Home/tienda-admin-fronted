@@ -81,13 +81,13 @@
             />
           </div>
 
-          <div class="edit-product__actions">
-            <button type="button" class="edit-product__button" (click)="cancel()">
+          <div class="btn-row">
+            <button type="button" class="btn" (click)="cancel()">
               Cancelar
             </button>
             <button
               type="submit"
-              class="form__button edit-product__button edit-product__button--primary"
+              class="btn btn--primary"
               [disabled]="editProductForm.invalid || isSubmitting"
             >
               Guardar

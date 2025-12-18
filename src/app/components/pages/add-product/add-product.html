@@ -82,13 +82,13 @@
           <div class="add-product__error">{{ errorMessage }}</div>
         }
 
-        <div class="add-product__actions">
-          <button type="button" class="add-product__button" (click)="cancel()">
+        <div class="btn-row">
+          <button type="button" class="btn" (click)="cancel()">
             Cancelar
           </button>
           <button
             type="submit"
-            class="form__button add-product__button add-product__button--primary"
+            class="btn btn--primary"
             [disabled]="addProductForm.invalid || isSubmitting"
           >
             Guardar

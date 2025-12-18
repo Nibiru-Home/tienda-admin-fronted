@@ -29,6 +29,7 @@ export class Login {
 
           if (role === 'ADMIN' || role === 'ROLE_ADMIN') {
             this.authService.saveToken(response.token);
+            this.authService.saveUser(response.user.name);
             this.router.navigate(['/admin']);
           } else {
             console.warn('Access denied. Normalized role:', role);

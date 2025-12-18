@@ -14,6 +14,10 @@ export class HTTPService {
         return this.http.get<T[]>(`${this.url}${route}`)
     }
 
+    get<T>(route: string): Observable<T> {
+        return this.http.get<T>(`${this.url}${route}`)
+    }
+
     getById<T>(route: string): Observable<T> {
         return this.http.get<T>(`${this.url}${route}`)
     }

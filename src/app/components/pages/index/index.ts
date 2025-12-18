@@ -29,16 +29,44 @@ export class Index implements OnInit {
   private productService = inject(ProductService);
 
   stats = [
-    { label: 'Productos activos', value: '240'},
-    { label: 'Pedidos esta semana', value: '56'},
-    { label: 'Usuarios registrados', value: '1.204'},
+    { label: 'Productos activos', value: '...' },
+    { label: 'Pedidos esta semana', value: '...' },
+    { label: 'Usuarios registrados', value: '...' },
   ];
 
   latestProducts: LatestProductRow[] = [];
   loadingLatestProducts = true;
+  userName: string = 'Administrador';
 
   ngOnInit() {
+    const storedName = this.authService.getUserName();
+    if (storedName) {
+      this.userName = storedName;
+    }
     this.loadLatestProducts();
+    this.loadStats();
+  }
+
+  loadStats() {
+    this.productService.getProductsCount().subscribe({
+      next: (count) => {
+        this.stats[0].value = count.toString();
+      },
+      error: (err) => {
+        console.error('Error loading products count', err);
+        this.stats[0].value = '0';
+      }
+    });
+
+    this.authService.getUsersCount().subscribe({
+      next: (count) => {
+        this.stats[2].value = count.toString();
+      },
+      error: (err) => {
+        console.error('Error loading users count', err);
+        this.stats[2].value = '0';
+      }
+    });
   }
 
   loadLatestProducts() {

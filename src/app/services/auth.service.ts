@@ -23,15 +23,28 @@ export class AuthService {
     localStorage.setItem('auth_token', token)
   }
 
+  saveUser(name: string): void {
+    localStorage.setItem('auth_name', name)
+  }
+
   getToken(): string | null {
     return localStorage.getItem('auth_token')
   }
 
+  getUserName(): string | null {
+    return localStorage.getItem('auth_name')
+  }
+
   logout(): void {
     localStorage.removeItem('auth_token')
+    localStorage.removeItem('auth_name')
   }
 
   isAuthenticated(): boolean {
     return this.getToken() !== null
+  }
+
+  getUsersCount(): Observable<number> {
+    return this.httpService.get<number>(`${this.authRoute}/count`)
   }
 }

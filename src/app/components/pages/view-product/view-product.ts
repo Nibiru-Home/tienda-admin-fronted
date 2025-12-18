@@ -132,6 +132,7 @@ export class ViewProduct implements OnInit {
     const image = this.image.trim();
 
     const payload = {
+      id: this.productId,
       name: this.name.trim(),
       description: this.description.trim(),
       price,
@@ -145,7 +146,7 @@ export class ViewProduct implements OnInit {
     this.productService.updateProduct(this.productId, payload).subscribe({
       next: () => {
         this.isSubmitting = false;
-        this.loadProduct(this.productId!);
+        this.router.navigate(['/admin/products']);
       },
       error: (err) => {
         console.error('Error updating product', err);

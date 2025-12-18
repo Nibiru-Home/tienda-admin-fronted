@@ -99,8 +99,8 @@ export class Index implements OnInit {
     };
   }
 
-  goToProducts() {
-    this.router.navigate(['/admin/products']);
+  goToAddProduct() {
+    this.router.navigate(['/admin/products/new']);
   }
 
   viewProduct(productId: number) {

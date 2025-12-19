@@ -36,6 +36,8 @@ export class Index implements OnInit {
   latestProducts: LatestProductRow[] = [];
   loadingLatestProducts = true;
   userName: string = 'Administrador';
+  deleteCandidateId: number | null = null;
+  isDeleting = false;
 
   ngOnInit() {
     const storedName = this.authService.getUserName();
@@ -103,21 +105,35 @@ export class Index implements OnInit {
     this.router.navigate(['/admin/products/new']);
   }
 
-  viewProduct(productId: number) {
+  editProduct(productId: number) {
     this.router.navigate(['/admin/products', productId]);
   }
 
   deleteProduct(productId: number) {
-    if (!confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+    this.deleteCandidateId = productId;
+  }
+
+  cancelDelete() {
+    if (this.isDeleting) return;
+    this.deleteCandidateId = null;
+  }
+
+  confirmDelete() {
+    if (this.deleteCandidateId === null || this.isDeleting) {
       return;
     }
+    this.isDeleting = true;
 
-    this.productService.deleteProduct(productId).subscribe({
+    this.productService.deleteProduct(this.deleteCandidateId).subscribe({
       next: () => {
+        this.isDeleting = false;
+        this.deleteCandidateId = null;
         this.loadLatestProducts();
       },
       error: (err) => {
         console.error('Error deleting product', err);
+        this.isDeleting = false;
+        this.deleteCandidateId = null;
       }
     });
   }

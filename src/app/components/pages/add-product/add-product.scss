@@ -40,11 +40,25 @@
 }
 
 .add-product__error {
-  color: #D32F2F;
+  color: var(--cyb-sys-color-red-5);
   font-size: var(--cyb-sys-font-size-3);
   margin: 0 0 var(--cyb-sys-margin-4) 0;
   text-align: center;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--cyb-sys-font-family-body);
+}
+
+.btn-save {
+  background-color: var(--cyb-sys-color-white-9);
+  color: var(--cyb-sys-color-black-5);
+  border: 1px solid var(--cyb-sys-color-beige-7);
+  box-shadow: none;
+  transform: none;
+}
+
+.btn-save:hover {
+  background-color: var(--cyb-sys-color-beige-9);
+  box-shadow: none;
+  transform: none;
 }
 
 @media (max-width: 960px) {

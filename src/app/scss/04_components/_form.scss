@@ -7,9 +7,9 @@
 
     --form-title-text-align: center;
     --form-title-margin-bottom: var(--cyb-sys-margin-9);
-    --form-title-font-size: var(--cyb-sys-font-size-9);
+    --form-title-font-size: var(--cyb-sys-font-size-7);
     --form-title-font-weight: var(--cyb-sys-font-weight-8);
-    --form-title-color: var(--cyb-sys-color-black-5);
+    --form-title-color: var(--cyb-sys-color-black-2);
 
     --form-label-margin: var(--cyb-sys-margin-3);
     --form-label-font-size: var(--cyb-sys-font-size-5);
@@ -50,7 +50,7 @@
         font-size: var(--form-title-font-size);
         font-weight: var(--form-title-font-weight);
         color: var(--form-title-color);
-        font-family: 'Cinzel', serif;
+        font-family: var(--cyb-sys-font-family-display);
     }
 
 
@@ -60,7 +60,7 @@
         font-weight: var(--form-label-font-weight);
         color: var(--form-label-color);
         display: block; // Ensure it behaves like a label
-        font-family: 'Raleway', sans-serif;
+        font-family: var(--cyb-sys-font-family-ui);
     }
 
     &__input {
@@ -71,7 +71,7 @@
         border: 1px solid var(--form-input-border-color);
         border-radius: var(--form-input-border-radius);
         font-size: var(--form-input-font-size);
-        font-family: 'Nunito', sans-serif;
+        font-family: var(--cyb-sys-font-family-body);
         color: var(--cyb-sys-color-black-5);
     }
 
@@ -85,7 +85,7 @@
         border-radius: var(--form-button-border-radius);
         font-size: var(--form-button-font-size);
         font-weight: var(--form-button-font-weight);
-        font-family: 'Raleway', sans-serif;
+        font-family: var(--cyb-sys-font-family-ui);
         cursor: pointer;
         transition: background-color 0.2s;
 

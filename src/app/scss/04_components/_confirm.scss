@@ -1,0 +1,50 @@
+// Generic confirmation overlay used across pages
+
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--cyb-sys-padding-10);
+  z-index: 1000;
+}
+
+.confirm-dialog {
+  width: min(420px, 100%);
+  background: var(--cyb-sys-color-white-9);
+  border-radius: var(--cyb-sys-border-radius-7);
+  box-shadow: var(--cyb-sys-shadow-3);
+  padding: var(--cyb-sys-padding-8);
+  font-family: var(--cyb-sys-font-family-body);
+  color: var(--cyb-sys-color-black-2);
+}
+
+.confirm-dialog__title {
+  margin: 0 0 var(--cyb-sys-margin-4) 0;
+  font-size: var(--cyb-sys-font-size-6);
+  font-weight: var(--cyb-sys-font-weight-8);
+}
+
+.confirm-dialog__body {
+  margin: 0 0 var(--cyb-sys-margin-6) 0;
+  font-size: var(--cyb-sys-font-size-4);
+  color: var(--cyb-sys-color-black-3);
+}
+
+.confirm-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--cyb-sys-padding-5);
+}
+
+.confirm-dialog__delete {
+  background-color: var(--cyb-sys-color-red-6);
+  color: var(--cyb-sys-color-white-9);
+  border: none;
+}
+
+.confirm-dialog__delete:hover {
+  background-color: var(--cyb-sys-color-red-7);
+}

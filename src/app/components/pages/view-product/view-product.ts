@@ -23,6 +23,7 @@ export class ViewProduct implements OnInit {
   isSubmitting = false;
   isDeleting = false;
   errorMessage = '';
+  showDeleteConfirm = false;
 
   productId: number | null = null;
 
@@ -156,18 +157,29 @@ export class ViewProduct implements OnInit {
     });
   }
 
-  deleteProduct() {
+  openDeleteConfirm() {
+    if (this.isSubmitting || this.isDeleting) {
+      return;
+    }
+    this.showDeleteConfirm = true;
+  }
+
+  cancelDelete() {
+    if (this.isDeleting) {
+      return;
+    }
+    this.showDeleteConfirm = false;
+  }
+
+  confirmDelete() {
     const id = this.productId;
     if (!id || this.isDeleting) {
       return;
     }
 
-    if (!confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-      return;
-    }
-
     this.isDeleting = true;
     this.errorMessage = '';
+    this.showDeleteConfirm = false;
 
     this.productService.deleteProduct(id).subscribe({
       next: () => {

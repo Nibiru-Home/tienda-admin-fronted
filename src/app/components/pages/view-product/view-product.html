@@ -2,7 +2,11 @@
   <c-sidebar></c-sidebar>
 
   <main class="view-product">
-    <c-form-card title="Detalle del producto" cardWidth="var(--cyb-sys-width-12)">
+    <c-form-card
+      title="Detalle del producto"
+      cardWidth="var(--cyb-sys-width-12)"
+      titleSize="var(--cyb-sys-font-size-8)"
+    >
       @if (isLoading) {
         <div class="view-product__loading">Cargando producto...</div>
       } @else if (!isLoaded) {
@@ -107,14 +111,18 @@
             <div class="view-product__error view-product__error--inline">{{ errorMessage }}</div>
           }
 
-          <div class="btn-row">
-            <button type="button" class="btn" (click)="deleteProduct()" [disabled]="isSubmitting || isDeleting">
-              @if (isDeleting) {
-                Eliminando...
-              } @else {
-                Eliminar
-              }
-            </button>
+          <div class="btn-row view-product__actions">
+            <span
+              class="view-product__delete"
+              [class.is-disabled]="isSubmitting || isDeleting"
+              (click)="openDeleteConfirm()"
+              (keydown.enter)="openDeleteConfirm()"
+              (keydown.space)="openDeleteConfirm()"
+              role="button"
+              tabindex="0"
+            >
+              Eliminar
+            </span>
             <button
               type="submit"
               class="btn"
@@ -130,5 +138,18 @@
         </form>
       }
     </c-form-card>
+
+    <div class="confirm-overlay" *ngIf="showDeleteConfirm">
+      <div class="confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
+        <h3 class="confirm-dialog__title">Eliminar producto</h3>
+        <p class="confirm-dialog__body">¿Estás seguro de borrar este artículo?</p>
+        <div class="confirm-dialog__actions">
+          <button type="button" class="btn" (click)="cancelDelete()" [disabled]="isDeleting">Cancelar</button>
+          <button type="button" class="btn confirm-dialog__delete" (click)="confirmDelete()" [disabled]="isDeleting">
+            @if (isDeleting) { Eliminando... } @else { Eliminar }
+          </button>
+        </div>
+      </div>
+    </div>
   </main>
 </div>

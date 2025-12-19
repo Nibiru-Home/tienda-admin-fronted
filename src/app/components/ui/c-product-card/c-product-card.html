@@ -6,9 +6,12 @@
         <h3 class="card-title">{{ product.name }}</h3>
         <p class="card-subtitle">{{ product.description }}</p>
         <p class="card-price">{{ product.price }} €</p>
-        <div class="card-actions">
-            <button class="btn-action" type="button" (click)="onEdit($event)">Editar</button>
-            <button class="btn-action" type="button" (click)="onDelete($event)">Eliminar</button>
-        </div>
+        <img
+            class="card-exit-icon"
+            src="/icons/contenedor-de-basura.png"
+            alt="Contenedor de basura"
+            (click)="onDelete($event)"
+            aria-label="Eliminar producto"
+        >
     </div>
 </div>

@@ -2,7 +2,7 @@
   <c-sidebar></c-sidebar>
 
   <main class="add-product">
-    <c-form-card title="Añadir producto">
+    <c-form-card title="Añadir producto" titleSize="var(--cyb-sys-font-size-9)">
       <form (ngSubmit)="submit()" #addProductForm="ngForm">
         <div class="form-group">
           <label for="name" class="form__label">Nombre</label>
@@ -88,8 +88,8 @@
           </button>
           <button
             type="submit"
-            class="btn btn--primary"
-            [disabled]="addProductForm.invalid || isSubmitting"
+            class="btn btn-save"
+            [disabled]="isSubmitting"
           >
             Guardar
           </button>

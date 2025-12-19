@@ -19,7 +19,7 @@
     flex: 1;
     padding: var(--cyb-sys-padding-12) var(--cyb-sys-padding-13);
     overflow-y: auto;
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--cyb-sys-font-family-body);
     color: var(--cyb-sys-color-black-2);
 }
 
@@ -30,27 +30,26 @@
     margin-bottom: var(--cyb-sys-margin-10);
 
     h1 {
-        font-family: 'Cinzel', serif;
-        font-size: var(--cyb-sys-font-size-10);
-        font-weight: var(--cyb-sys-font-weight-4);
-        color: var(--cyb-sys-color-black-2);
         margin: 0;
     }
 
     .btn-new-product {
-        background-color: var(--cyb-sys-color-blue-gray-7);
-        color: var(--cyb-sys-color-black-4);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--cyb-sys-color-beige-5);
+        color: var(--cyb-sys-color-black-1);
         border: none;
         padding: var(--cyb-sys-padding-6) var(--cyb-sys-padding-9);
         font-size: var(--cyb-sys-font-size-4);
         cursor: pointer;
         border-radius: var(--cyb-sys-border-radius-3);
-        font-family: 'Nunito', sans-serif;
+        font-family: var(--cyb-sys-font-family-ui);
         font-weight: var(--cyb-sys-font-weight-6);
-        transition: background-color 0.3s;
+        transition: background-color 0.3s ease;
 
         &:hover {
-            background-color: var(--cyb-sys-color-light-blue-7);
+            background-color: var(--cyb-sys-color-beige-6);
         }
     }
 }
@@ -67,7 +66,7 @@
         border-radius: var(--cyb-sys-border-radius-5);
         background: transparent;
         color: var(--cyb-sys-color-black-2);
-        font-family: 'Nunito', sans-serif;
+        font-family: var(--cyb-sys-font-family-ui);
         font-size: var(--cyb-sys-font-size-4);
         cursor: pointer;
         transition: all 0.2s ease;

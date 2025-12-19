@@ -6,6 +6,8 @@
 }
 
 .product-card {
+    display: flex;
+    flex-direction: column;
     background-color: var(--cyb-sys-color-white-9);
     border-radius: var(--cyb-sys-border-radius-5);
     overflow: hidden;
@@ -34,6 +36,10 @@
     }
 
     .card-body {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: var(--cyb-sys-padding-4);
         padding: var(--cyb-sys-padding-9);
 
         .card-title {
@@ -41,12 +47,13 @@
             font-weight: var(--cyb-sys-font-weight-7);
             margin: 0 0 var(--cyb-sys-margin-2) 0;
             color: var(--cyb-sys-color-black-2);
+            font-family: var(--cyb-sys-font-family-body);
         }
 
         .card-subtitle {
             font-size: var(--cyb-sys-font-size-3);
             color: var(--cyb-sys-color-black-8);
-            margin: 0 0 var(--cyb-sys-margin-9) 0;
+            margin: 0 0 var(--cyb-sys-margin-5) 0;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             line-clamp: 2;
@@ -58,29 +65,20 @@
             font-size: var(--cyb-sys-font-size-4);
             font-weight: var(--cyb-sys-font-weight-7);
             color: var(--cyb-sys-color-black-2);
-            margin-bottom: var(--cyb-sys-margin-5);
+            margin-bottom: var(--cyb-sys-margin-3);
         }
 
-        .card-actions {
-            display: flex;
-            gap: var(--cyb-sys-padding-7);
+        .card-exit-icon {
+            width: 36px;
+            height: 36px;
+            align-self: flex-end;
+            margin-top: auto;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.15s ease;
 
-            .btn-action {
-                flex: 1;
-                padding: var(--cyb-sys-padding-5) 0;
-                background-color: var(--cyb-sys-color-white-9);
-                border: 1px solid var(--cyb-sys-color-white-3);
-                border-radius: var(--cyb-sys-border-radius-3);
-                color: var(--cyb-sys-color-black-5);
-                font-family: 'Nunito', sans-serif;
-                font-size: var(--cyb-sys-font-size-3);
-                cursor: pointer;
-                transition: all 0.2s;
-
-                &:hover {
-                    background-color: var(--cyb-sys-color-white-6);
-                    border-color: var(--cyb-sys-color-white-1);
-                }
+            &:hover {
+                transform: scale(1.05);
             }
         }
     }

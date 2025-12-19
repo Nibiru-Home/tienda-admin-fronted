@@ -22,6 +22,8 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   categories: string[] = [];
   selectedCategory: string = '';
+  deleteCandidateId: number | null = null;
+  isDeleting = false;
 
   get filteredProducts(): Product[] {
     if (!this.selectedCategory) {
@@ -67,13 +69,30 @@ export class ProductsComponent implements OnInit {
   }
 
   deleteProduct(id: number) {
-    if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-      this.productService.deleteProduct(id).subscribe({
-        next: () => {
-          this.loadProducts(); // Reload list
-        },
-        error: (err) => console.error('Error deleting product', err)
-      });
+    this.deleteCandidateId = id;
+  }
+
+  cancelDelete() {
+    if (this.isDeleting) return;
+    this.deleteCandidateId = null;
+  }
+
+  confirmDelete() {
+    if (this.deleteCandidateId === null || this.isDeleting) {
+      return;
     }
+    this.isDeleting = true;
+    this.productService.deleteProduct(this.deleteCandidateId).subscribe({
+      next: () => {
+        this.isDeleting = false;
+        this.deleteCandidateId = null;
+        this.loadProducts();
+      },
+      error: (err) => {
+        console.error('Error deleting product', err);
+        this.isDeleting = false;
+        this.deleteCandidateId = null;
+      }
+    });
   }
 }

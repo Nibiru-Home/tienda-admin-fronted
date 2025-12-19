@@ -44,7 +44,7 @@
               </td>
               <td>{{ product.categoryName }}</td>
               <td class="dashboard__action-cell">
-                <c-product-table-actions [productId]="product.id" (view)="viewProduct($event)"
+                <c-product-table-actions [productId]="product.id" (edit)="editProduct($event)"
                   (remove)="deleteProduct($event)"></c-product-table-actions>
               </td>
             </tr>
@@ -52,6 +52,19 @@
 
           </tbody>
         </table>
+      </div>
+
+      <div class="confirm-overlay" *ngIf="deleteCandidateId !== null">
+        <div class="confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
+          <h3 class="confirm-dialog__title">Eliminar producto</h3>
+          <p class="confirm-dialog__body">¿Estás seguro de borrar este artículo?</p>
+          <div class="confirm-dialog__actions">
+            <button type="button" class="btn" (click)="cancelDelete()" [disabled]="isDeleting">Cancelar</button>
+            <button type="button" class="btn confirm-dialog__delete" (click)="confirmDelete()" [disabled]="isDeleting">
+              Eliminar
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   </main>

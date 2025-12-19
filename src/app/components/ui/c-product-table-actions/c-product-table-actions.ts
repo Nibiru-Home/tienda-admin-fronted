@@ -10,15 +10,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CProductTableActions {
   @Input({ required: true }) productId!: number;
-  @Output() view = new EventEmitter<number>();
+  @Output() edit = new EventEmitter<number>();
   @Output() remove = new EventEmitter<number>();
 
-  onView() {
-    this.view.emit(this.productId);
+  onEdit() {
+    this.edit.emit(this.productId);
   }
 
   onRemove() {
     this.remove.emit(this.productId);
   }
 }
-

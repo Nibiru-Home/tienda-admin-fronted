@@ -9,7 +9,7 @@
     padding: var(--cyb-sys-padding-10) var(--cyb-sys-padding-8);
     background: var(--sidebar-surface);
     color: var(--sidebar-text);
-    font-family: 'Raleway', sans-serif;
+    font-family: var(--cyb-sys-font-family-ui);
     border-right: 1px solid var(--cyb-sys-color-beige-6);
     box-shadow: var(--cyb-sys-shadow-5);
     position: sticky;

@@ -8,6 +8,7 @@
           <h1>Gestión de categorías</h1>
           <p class="categories__subtitle">Crea y revisa las categorías visibles en el catálogo.</p>
         </div>
+        <button class="btn-new-category" (click)="addCategory()">+ Nueva categoría</button>
       </header>
 
       <div class="categories__grid">
@@ -34,6 +35,11 @@
                 <tr>
                   <td>{{ category.id }}</td>
                   <td>{{ category.name }}</td>
+                  <td>
+                    <button class="btn-icon" (click)="deleteCategory(category.id)">
+                      <img src="icons/contenedor-de-basura.png" alt="Eliminar" width="20" height="20">
+                    </button>
+                  </td>
                 </tr>
                 }
               </tbody>
@@ -42,36 +48,51 @@
           }
         </section>
 
-        <c-form-card title="Nueva categoría" titleSize="var(--cyb-sys-font-size-7)">
-          <form (ngSubmit)="submit()" #categoryForm="ngForm" class="categories__form">
-            <div class="form-group">
-              <label for="name" class="form__label">Nombre</label>
-              <input
-                id="name"
-                type="text"
-                class="form__input"
-                name="name"
-                [(ngModel)]="name"
-                required
-              />
-            </div>
-
-            @if (formError) {
-            <div class="categories__error">{{ formError }}</div>
-            }
-
-            @if (successMessage) {
-            <div class="categories__success">{{ successMessage }}</div>
-            }
-
-            <div class="btn-row">
-              <button type="submit" class="btn btn--primary" [disabled]="isSubmitting">
-                Guardar
-              </button>
-            </div>
-          </form>
-        </c-form-card>
       </div>
     </section>
   </main>
+
+  @if (showCreateModal) {
+  <div class="confirm-overlay">
+    <div class="confirm-dialog" role="dialog" aria-modal="true" aria-label="Nueva categoría">
+      <h3 class="confirm-dialog__title">Nueva categoría</h3>
+
+      <form (ngSubmit)="submit()" #categoryForm="ngForm" class="categories__form form">
+        <div class="form-group">
+          <label for="name" class="form__label">Nombre</label>
+          <input id="name" type="text" class="form__input" name="name" [(ngModel)]="name" required />
+        </div>
+
+        @if (formError) {
+        <div class="categories__error">{{ formError }}</div>
+        }
+
+        @if (successMessage) {
+        <div class="categories__success">{{ successMessage }}</div>
+        }
+
+        <div class="confirm-dialog__actions">
+          <button type="button" class="btn" (click)="closeCreateModal()" [disabled]="isSubmitting">Cancelar</button>
+          <button type="button" class="btn btn--primary" (click)="submit()" [disabled]="isSubmitting">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  }
+  @if (deleteCandidateId !== null) {
+  <div class="confirm-overlay">
+    <div class="confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
+      <h3 class="confirm-dialog__title">Eliminar categoría</h3>
+      <p class="confirm-dialog__body">¿Estás seguro de borrar esta categoría?</p>
+      <div class="confirm-dialog__actions">
+        <button type="button" class="btn" (click)="cancelDelete()" [disabled]="isDeleting">Cancelar</button>
+        <button type="button" class="btn confirm-dialog__delete" (click)="confirmDelete()" [disabled]="isDeleting">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+  }
 </div>

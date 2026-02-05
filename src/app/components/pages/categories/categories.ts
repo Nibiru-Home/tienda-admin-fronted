@@ -79,4 +79,51 @@ export class Categories implements OnInit {
       }
     });
   }
+
+  deleteCandidateId: number | null = null;
+  isDeleting = false;
+  showCreateModal = false;
+
+  addCategory() {
+    this.showCreateModal = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.formError = '';
+    this.name = '';
+  }
+
+  closeCreateModal() {
+    this.showCreateModal = false;
+  }
+
+  deleteCategory(id?: number) {
+    if (!id) return;
+    this.deleteCandidateId = id;
+  }
+
+  cancelDelete() {
+    this.deleteCandidateId = null;
+  }
+
+  confirmDelete() {
+    if (!this.deleteCandidateId) return;
+
+    this.isDeleting = true;
+    this.errorMessage = '';
+
+    this.categoryService.deleteCategory(this.deleteCandidateId).subscribe({
+      next: () => {
+        this.isDeleting = false;
+        this.deleteCandidateId = null;
+        this.successMessage = 'Categoría eliminada correctamente.';
+        this.loadCategories();
+      },
+      error: (err) => {
+        console.error('Error deleting category', err);
+        this.isDeleting = false;
+        this.deleteCandidateId = null;
+        this.errorMessage = 'No se pudo eliminar la categoría.';
+      }
+    });
+  }
 }

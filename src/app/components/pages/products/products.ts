@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CSidebar } from '../../ui/c-sidebar/c-sidebar';
 import { ProductService } from '../../../services/product.service';
-import { Product } from '../../../models/product.model';
+import { CategoryService } from '../../../services/category.service';
+import { Product, Category } from '../../../models/product.model';
 
 import { CProductCard } from '../../ui/c-product-card/c-product-card';
 
@@ -17,6 +18,7 @@ import { CProductCard } from '../../ui/c-product-card/c-product-card';
 })
 export class ProductsComponent implements OnInit {
   private productService = inject(ProductService);
+  private categoryService = inject(CategoryService);
   private router = inject(Router);
 
   products: Product[] = [];
@@ -35,16 +37,25 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadCategories();
     this.loadProducts();
+  }
+
+  loadCategories() {
+    this.categoryService.getCategories().subscribe({
+      next: (data: Category[]) => {
+        this.categories = data.map((c: Category) => c.name).sort((a: string, b: string) => a.localeCompare(b));
+      },
+      error: (err: any) => {
+        console.error('Error loading categories', err);
+      }
+    });
   }
 
   loadProducts() {
     this.productService.getProducts().subscribe({
       next: (data) => {
         this.products = data;
-        // Extract unique categories and filter out any falsy values
-        const allCategories = data.flatMap(p => p.category).map(c => c.name);
-        this.categories = [...new Set(allCategories.filter(c => !!c))];
       },
       error: (err) => {
         console.error('Error loading products', err);

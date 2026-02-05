@@ -31,10 +31,9 @@
 }
 
 .categories__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  gap: var(--cyb-sys-padding-10);
-  align-items: start;
+  display: block; // Changed from grid to block since we only have the table now
+  // gap: var(--cyb-sys-padding-10);
+  // align-items: start;
 }
 
 .categories__table-card {
@@ -123,4 +122,45 @@
   .categories__grid {
     grid-template-columns: 1fr;
   }
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.btn-new-category {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cyb-sys-color-beige-5);
+  color: var(--cyb-sys-color-black-1);
+  border: none;
+  padding: var(--cyb-sys-padding-6) var(--cyb-sys-padding-9);
+  font-size: var(--cyb-sys-font-size-4);
+  cursor: pointer;
+  border-radius: var(--cyb-sys-border-radius-3);
+  font-family: var(--cyb-sys-font-family-ui);
+  font-weight: var(--cyb-sys-font-weight-6);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--cyb-sys-color-beige-6);
+  }
+}
+
+.confirm-dialog__title {
+  text-align: center;
+  margin-bottom: var(--cyb-sys-margin-8);
 }

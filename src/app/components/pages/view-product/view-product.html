@@ -2,140 +2,88 @@
   <c-sidebar></c-sidebar>
 
   <main class="view-product">
-    <c-form-card
-      title="Detalle del producto"
-      cardWidth="var(--cyb-sys-width-12)"
-      titleSize="var(--cyb-sys-font-size-8)"
-    >
+    <c-form-card title="Detalle del producto" cardWidth="var(--cyb-sys-width-12)"
+      titleSize="var(--cyb-sys-font-size-8)">
       @if (isLoading) {
-        <div class="view-product__loading">Cargando producto...</div>
+      <div class="view-product__loading">Cargando producto...</div>
       } @else if (!isLoaded) {
-        @if (errorMessage) {
-          <div class="view-product__error">{{ errorMessage }}</div>
-        }
-        <div class="btn-row">
-          <button type="button" class="btn" (click)="goBack()">Volver</button>
-        </div>
+      @if (errorMessage) {
+      <div class="view-product__error">{{ errorMessage }}</div>
+      }
+      <div class="btn-row">
+        <button type="button" class="btn" (click)="goBack()">Volver</button>
+      </div>
       } @else {
-        <form (ngSubmit)="save()" #productForm="ngForm">
-          <div class="view-product__content">
-            <div class="view-product__media">
-              <img class="view-product__image" [src]="imagePreviewUrl" [alt]="name" loading="lazy" />
-            </div>
-
-            <div class="view-product__details">
-              <div class="view-product__row">
-                <div class="form-group">
-                  <label for="id" class="form__label">ID</label>
-                  <input id="id" type="number" class="form__input" [value]="productId ?? ''" disabled />
-                </div>
-
-                <div class="form-group">
-                  <label for="price" class="form__label">Precio (€)</label>
-                  <input
-                    id="price"
-                    type="number"
-                    class="form__input"
-                    name="price"
-                    [(ngModel)]="price"
-                    required
-                    min="0"
-                    step="0.01"
-                  />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="name" class="form__label">Nombre</label>
-                <input
-                  id="name"
-                  type="text"
-                  class="form__input"
-                  name="name"
-                  [(ngModel)]="name"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="description" class="form__label">Descripción</label>
-                <textarea
-                  id="description"
-                  class="form__input view-product__textarea"
-                  name="description"
-                  [(ngModel)]="description"
-                  required
-                ></textarea>
-              </div>
-
-              <div class="view-product__row">
-                <div class="form-group">
-                  <label for="categoryId" class="form__label">ID categoría</label>
-                  <input
-                    id="categoryId"
-                    type="number"
-                    class="form__input"
-                    name="categoryId"
-                    [(ngModel)]="categoryId"
-                    min="1"
-                    step="1"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="style" class="form__label">Estilo (opcional)</label>
-                  <input
-                    id="style"
-                    type="text"
-                    class="form__input"
-                    name="style"
-                    [(ngModel)]="style"
-                  />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="image" class="form__label">Imagen (URL o nombre)</label>
-                <input
-                  id="image"
-                  type="text"
-                  class="form__input"
-                  name="image"
-                  [(ngModel)]="image"
-                />
-              </div>
-            </div>
+      <form (ngSubmit)="save()" #productForm="ngForm">
+        <div class="view-product__content">
+          <div class="view-product__media">
+            <img class="view-product__image" [src]="imagePreviewUrl" [alt]="name" loading="lazy" />
           </div>
 
-          @if (errorMessage) {
-            <div class="view-product__error view-product__error--inline">{{ errorMessage }}</div>
-          }
+          <div class="view-product__details">
+            <div class="view-product__row">
+              <div class="form-group">
+                <label for="id" class="form__label">ID</label>
+                <input id="id" type="number" class="form__input" [value]="productId ?? ''" disabled />
+              </div>
 
-          <div class="btn-row view-product__actions">
-            <span
-              class="view-product__delete"
-              [class.is-disabled]="isSubmitting || isDeleting"
-              (click)="openDeleteConfirm()"
-              (keydown.enter)="openDeleteConfirm()"
-              (keydown.space)="openDeleteConfirm()"
-              role="button"
-              tabindex="0"
-            >
-              Eliminar
-            </span>
-            <button
-              type="submit"
-              class="btn"
-              [disabled]="productForm.invalid || isSubmitting || isDeleting"
-            >
-              @if (isSubmitting) {
-                Guardando...
-              } @else {
-                Guardar
-              }
-            </button>
+              <div class="form-group">
+                <label for="price" class="form__label">Precio (€)</label>
+                <input id="price" type="number" class="form__input" name="price" [(ngModel)]="price" required min="0"
+                  step="0.01" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="form__label">Nombre</label>
+              <input id="name" type="text" class="form__input" name="name" [(ngModel)]="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="form__label">Descripción</label>
+              <textarea id="description" class="form__input view-product__textarea" name="description"
+                [(ngModel)]="description" required></textarea>
+            </div>
+
+            <div class="view-product__row">
+              <div class="form-group">
+                <label for="categoryName" class="form__label">Categoría</label>
+                <input id="categoryName" type="text" class="form__input" name="categoryName"
+                  [(ngModel)]="categoryName" />
+              </div>
+
+              <div class="form-group">
+                <label for="style" class="form__label">Estilo (opcional)</label>
+                <input id="style" type="text" class="form__input" name="style" [(ngModel)]="style" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="image" class="form__label">Imagen (URL o nombre)</label>
+              <input id="image" type="text" class="form__input" name="image" [(ngModel)]="image" />
+            </div>
           </div>
-        </form>
+        </div>
+
+        @if (errorMessage) {
+        <div class="view-product__error view-product__error--inline">{{ errorMessage }}</div>
+        }
+
+        <div class="btn-row view-product__actions">
+          <span class="view-product__delete" [class.is-disabled]="isSubmitting || isDeleting"
+            (click)="openDeleteConfirm()" (keydown.enter)="openDeleteConfirm()" (keydown.space)="openDeleteConfirm()"
+            role="button" tabindex="0">
+            Eliminar
+          </span>
+          <button type="submit" class="btn" [disabled]="productForm.invalid || isSubmitting || isDeleting">
+            @if (isSubmitting) {
+            Guardando...
+            } @else {
+            Guardar
+            }
+          </button>
+        </div>
+      </form>
       }
     </c-form-card>
 

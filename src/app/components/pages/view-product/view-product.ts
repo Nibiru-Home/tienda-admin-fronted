@@ -3,6 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
+import { CategoryService } from '../../../services/category.service';
 import { CSidebar } from '../../ui/c-sidebar/c-sidebar';
 import { CFormCard } from '../../ui/c-form-card/c-form-card';
 
@@ -17,6 +18,7 @@ export class ViewProduct implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
+  private categoryService = inject(CategoryService);
 
   isLoading = true;
   isLoaded = false;
@@ -31,6 +33,7 @@ export class ViewProduct implements OnInit {
   description = '';
   price: number | null = null;
   categoryId: number | null = null;
+  categoryName: string = '';
   style = '';
   image = '';
 
@@ -81,10 +84,13 @@ export class ViewProduct implements OnInit {
 
     if (typeof normalizedCategory === 'string') {
       this.categoryId = null;
+      this.categoryName = normalizedCategory;
     } else if (normalizedCategory && typeof normalizedCategory === 'object') {
       this.categoryId = normalizedCategory?.id ? Number(normalizedCategory.id) : null;
+      this.categoryName = normalizedCategory?.name ? String(normalizedCategory.name) : '';
     } else {
       this.categoryId = null;
+      this.categoryName = '';
     }
 
     const styles = product?.styles;
@@ -128,32 +134,53 @@ export class ViewProduct implements OnInit {
       return;
     }
 
-    const categoryId = this.categoryId ? Number(this.categoryId) : null;
-    const style = this.style.trim();
-    const image = this.image.trim();
-
-    const payload = {
-      id: this.productId,
-      name: this.name.trim(),
-      description: this.description.trim(),
-      price,
-      category: categoryId ? [{ id: categoryId }] : [],
-      styles: style ? [style] : [],
-      image: image || undefined,
-    };
-
     this.isSubmitting = true;
 
-    this.productService.updateProduct(this.productId, payload).subscribe({
-      next: () => {
-        this.isSubmitting = false;
-        this.router.navigate(['/admin/products']);
+    // Helper to proceed with update
+    const performUpdate = (finalCategoryId: number | null) => {
+      const style = this.style.trim();
+      const image = this.image.trim();
+
+      const payload = {
+        id: this.productId,
+        name: this.name.trim(),
+        description: this.description.trim(),
+        price,
+        category: finalCategoryId ? [{ id: finalCategoryId }] : [],
+        styles: style ? [style] : [],
+        image: image || undefined,
+      };
+
+      this.productService.updateProduct(this.productId!, payload).subscribe({
+        next: () => {
+          this.isSubmitting = false;
+          this.router.navigate(['/admin/products']);
+        },
+        error: (err) => {
+          console.error('Error updating product', err);
+          this.isSubmitting = false;
+          this.errorMessage = 'No se pudo guardar el producto.';
+        }
+      });
+    };
+
+    const categoryNameClean = this.categoryName.trim();
+    if (!categoryNameClean) {
+      this.errorMessage = 'La categoría es obligatoria.';
+      this.isSubmitting = false;
+      return;
+    }
+
+    // Try to find category by name
+    this.categoryService.getCategoryByName(categoryNameClean).subscribe({
+      next: (cat) => {
+        performUpdate(cat.id);
       },
-      error: (err) => {
-        console.error('Error updating product', err);
+      error: () => {
+        // Not found, ERROR
         this.isSubmitting = false;
-        this.errorMessage = 'No se pudo guardar el producto.';
-      },
+        this.errorMessage = `La categoría "${categoryNameClean}" no existe.`;
+      }
     });
   }
 

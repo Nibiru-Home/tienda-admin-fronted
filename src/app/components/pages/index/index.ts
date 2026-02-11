@@ -7,6 +7,7 @@ import { CDashboardStats } from '../../ui/c-dashboard-stats/c-dashboard-stats';
 import { AuthService } from '../../../services/auth.service';
 import { ProductService } from '../../../services/product.service';
 import { CProductTableActions } from '../../ui/c-product-table-actions/c-product-table-actions';
+import { OrderService } from '../../../services/order.service';
 
 type LatestProductRow = {
   id: number;
@@ -26,6 +27,7 @@ export class Index implements OnInit {
   authService = inject(AuthService);
   router = inject(Router);
   private productService = inject(ProductService);
+  private orderService = inject(OrderService);
 
   stats = [
     { label: 'Productos activos', value: '...' },
@@ -59,6 +61,16 @@ export class Index implements OnInit {
       }
     });
 
+    this.orderService.getOrders().subscribe({
+      next: (orders) => {
+        this.stats[1].value = this.countCurrentWeekOrders(orders).toString();
+      },
+      error: (err) => {
+        console.error('Error loading weekly orders count', err);
+        this.stats[1].value = '0';
+      }
+    });
+
     this.authService.getUsersCount().subscribe({
       next: (count) => {
         this.stats[2].value = count.toString();
@@ -68,6 +80,44 @@ export class Index implements OnInit {
         this.stats[2].value = '0';
       }
     });
+  }
+
+  private countCurrentWeekOrders(orders: any[]): number {
+    const now = new Date();
+    const day = now.getDay();
+    const diffToMonday = (day + 6) % 7;
+
+    const weekStart = new Date(now);
+    weekStart.setHours(0, 0, 0, 0);
+    weekStart.setDate(now.getDate() - diffToMonday);
+
+    const nextWeekStart = new Date(weekStart);
+    nextWeekStart.setDate(weekStart.getDate() + 7);
+
+    return (orders ?? []).reduce((count, order) => {
+      const orderDate = this.parseOrderDate(order?.date);
+      if (!orderDate) {
+        return count;
+      }
+      return orderDate >= weekStart && orderDate < nextWeekStart ? count + 1 : count;
+    }, 0);
+  }
+
+  private parseOrderDate(value: unknown): Date | null {
+    if (value === null || value === undefined) {
+      return null;
+    }
+
+    let parsed: Date;
+    if (typeof value === 'number') {
+      parsed = new Date(value);
+    } else if (typeof value === 'string' && /^\d+$/.test(value.trim())) {
+      parsed = new Date(Number(value));
+    } else {
+      parsed = new Date(String(value));
+    }
+
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
   }
 
   loadLatestProducts() {

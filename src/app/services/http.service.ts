@@ -2,13 +2,11 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 
-const API_BASE_URL = resolveApiBaseUrl();
+// Local (comentado para entorno servidor):
+// const API_BASE_URL = 'http://localhost:8080';
 
-function resolveApiBaseUrl(): string {
-    const hostname = window.location.hostname;
-    const isLocal = hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1';
-    return isLocal ? 'http://localhost:8080' : 'http://api.nibiruhome.store';
-}
+// Servidor (activo):
+const API_BASE_URL = 'http://api.nibiruhome.store';
 
 @Injectable({
     providedIn: 'root'

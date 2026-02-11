@@ -56,6 +56,13 @@
     transform: translateX(4px);
   }
 
+  .c-sidebar a.is-active:hover {
+    background-color: var(--cyb-sys-color-white-9);
+    border-color: var(--sidebar-accent);
+    box-shadow: var(--cyb-sys-shadow-3);
+    transform: none;
+  }
+
   .c-sidebar a.is-active {
     background-color: var(--cyb-sys-color-white-9);
     border-color: var(--sidebar-accent);
@@ -68,10 +75,15 @@
     height: 22px;
   }
 
-  .c-sidebar a:hover img,
-  .c-sidebar a.is-active img {
+  .c-sidebar a:hover img {
     filter: grayscale(0) saturate(1.15);
     transform: translateX(1px);
+  }
+
+  .c-sidebar a.is-active img,
+  .c-sidebar a.is-active:hover img {
+    filter: grayscale(0) saturate(1.15);
+    transform: none;
   }
 
   .c-sidebar a span {

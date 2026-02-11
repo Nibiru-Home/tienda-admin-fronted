@@ -12,16 +12,10 @@
     border-radius: var(--cyb-sys-border-radius-5);
     overflow: hidden;
     box-shadow: var(--cyb-sys-shadow-2);
-    transition: transform 0.2s, box-shadow 0.2s;
     border: 1px solid var(--cyb-sys-color-white-5);
     height: 100%;
     /* Ensure card takes full height of grid cell if needed */
     cursor: pointer;
-
-    &:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--cyb-sys-shadow-3);
-    }
 
     .card-image {
         height: 200px;
@@ -75,11 +69,6 @@
             margin-top: auto;
             object-fit: contain;
             cursor: pointer;
-            transition: transform 0.15s ease;
-
-            &:hover {
-                transform: scale(1.05);
-            }
         }
     }
 }

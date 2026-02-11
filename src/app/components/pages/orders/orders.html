@@ -1,0 +1,101 @@
+<div class="container">
+    <c-sidebar></c-sidebar>
+
+    <main class="orders">
+        <section class="orders__section">
+            <header class="orders__section-header">
+                <h1>Gestión de pedidos</h1>
+            </header>
+
+            @if (isLoading) {
+            <div class="orders__table-empty">Cargando pedidos...</div>
+            } @else if (errorMessage) {
+            <div class="orders__error">{{ errorMessage }}</div>
+            } @else if (orders.length === 0) {
+            <div class="orders__table-empty">No hay pedidos registrados.</div>
+            } @else {
+            <div class="orders__table-wrapper">
+                <table class="orders__table">
+                    <thead>
+                        <tr>
+                            <th>Pedido</th>
+                            <th>Fecha</th>
+                            <th>Cliente</th>
+                            <th>Estado</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (order of orders; track order.id) {
+                        <tr>
+                            <td>
+                                <div class="orders__id">{{ order.id || '-' }}</div>
+                            </td>
+                            <td>{{ formatDate(order.date) }}</td>
+                            <td>
+                                <div class="orders__customer-name">{{ order.customerName || '-' }}</div>
+                            </td>
+                            <td>
+                                <span [class]="getStatusClass(order.status)">
+                                    {{ getStatusLabel(order.status) }}
+                                </span>
+                            </td>
+                            <td>{{ formatAmount(order.total) }}</td>
+                            <td>
+                                <button type="button" class="orders__detail-button" (click)="openDetails(order)">
+                                    Ver detalles
+                                </button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            }
+        </section>
+    </main>
+</div>
+
+@if (selectedOrder) {
+<div class="orders__detail-overlay" (click)="closeDetails()">
+    <section class="orders__detail-dialog" (click)="$event.stopPropagation()">
+        <header class="orders__detail-header">
+            <h2>Pedido {{ selectedOrder.id || '-' }}</h2>
+            <button type="button" class="orders__detail-close" (click)="closeDetails()">Cerrar</button>
+        </header>
+
+        <div class="orders__detail-meta">
+            <span>{{ formatDate(selectedOrder.date) }}</span>
+            <span>{{ selectedOrder.customerName || '-' }}</span>
+            <span [class]="getStatusClass(selectedOrder.status)">{{ getStatusLabel(selectedOrder.status) }}</span>
+        </div>
+
+        @if (selectedOrder.items.length === 0) {
+        <div class="orders__detail-empty">Este pedido no tiene productos asociados.</div>
+        } @else {
+        <ul class="orders__items">
+            @for (item of selectedOrder.items; track item.id) {
+            <li class="orders__item-row">
+                <span>{{ item.productName || ('Producto #' + item.productId) }}</span>
+                <span>x{{ item.quantity }}</span>
+                <span>{{ formatAmount(item.subtotal) }}</span>
+            </li>
+            }
+        </ul>
+        }
+
+        @if (getShippingAmount(selectedOrder) > 0) {
+        <div class="orders__detail-shipping">
+            <span>Gastos de envío</span>
+            <span>{{ formatAmount(getShippingAmount(selectedOrder)) }}</span>
+        </div>
+        }
+
+        <footer class="orders__detail-total">
+            <span>Total</span>
+            <strong>{{ formatAmount(getOrderTotal(selectedOrder)) }}</strong>
+        </footer>
+    </section>
+</div>
+}

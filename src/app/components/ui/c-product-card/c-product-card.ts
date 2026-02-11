@@ -15,7 +15,7 @@ export class CProductCard {
     @Output() edit = new EventEmitter<number>();
     @Output() delete = new EventEmitter<number>();
 
-    private readonly baseUrl = 'http://localhost:4200/images/products/';
+    private readonly baseUrl = '/images/products/';
 
     get imageUrl(): string {
         if (!this.product.image) {

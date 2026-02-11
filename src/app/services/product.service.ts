@@ -7,7 +7,7 @@ import { HTTPService } from './http.service';
     providedIn: 'root'
 })
 export class ProductService {
-    private readonly productsRoute: string = '/api/products';
+    private readonly productsRoute = '/api/products';
 
     constructor(private httpService: HTTPService) { }
 

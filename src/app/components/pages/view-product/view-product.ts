@@ -37,7 +37,7 @@ export class ViewProduct implements OnInit {
   style = '';
   image = '';
 
-  private readonly imagesBaseUrl = 'http://localhost:4200/images/products/';
+  private readonly imagesBaseUrl = '/images/products/';
 
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');

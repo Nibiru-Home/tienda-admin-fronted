@@ -6,30 +6,39 @@
             <button class="btn-new-product" (click)="addProduct()">+ Nuevo producto</button>
         </header>
 
-        <section class="category-filters" *ngIf="categories.length > 0">
-            <button [class.active]="selectedCategory === ''" (click)="filterCategory('')">Todas</button>
-            <button *ngFor="let category of categories" [class.active]="selectedCategory === category"
-                (click)="filterCategory(category)">
-                {{ category }}
-            </button>
-        </section>
+        @if (categories.length > 0) {
+            <section class="category-filters">
+                <button [class.active]="selectedCategory === ''" (click)="filterCategory('')">Todas</button>
+                @for (category of categories; track category) {
+                    <button [class.active]="selectedCategory === category" (click)="filterCategory(category)">
+                        {{ category }}
+                    </button>
+                }
+            </section>
+        }
 
         <section class="products-grid">
-            <c-product-card *ngFor="let product of filteredProducts" [product]="product" (edit)="editProduct($event)"
-                (view)="viewProduct($event)" (delete)="deleteProduct($event)">
-            </c-product-card>
+            @for (product of filteredProducts; track product.id) {
+                <c-product-card [product]="product" (edit)="editProduct($event)" (view)="viewProduct($event)"
+                    (delete)="deleteProduct($event)">
+                </c-product-card>
+            }
         </section>
 
-        <div class="confirm-overlay" *ngIf="deleteCandidateId !== null">
-            <div class="confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
-                <h3 class="confirm-dialog__title">Eliminar producto</h3>
-                <p class="confirm-dialog__body">¿Estás seguro de borrar este artículo?</p>
-                <div class="confirm-dialog__actions">
-                    <button type="button" class="btn" (click)="cancelDelete()" [disabled]="isDeleting">Cancelar</button>
-                    <button type="button" class="btn confirm-dialog__delete" (click)="confirmDelete()"
-                        [disabled]="isDeleting">Eliminar</button>
+        @if (deleteCandidateId !== null) {
+            <div class="confirm-overlay">
+                <div class="confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
+                    <h3 class="confirm-dialog__title">Eliminar producto</h3>
+                    <p class="confirm-dialog__body">¿Estás seguro de borrar este artículo?</p>
+                    <div class="confirm-dialog__actions">
+                        <button type="button" class="btn" (click)="cancelDelete()" [disabled]="isDeleting">
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn confirm-dialog__delete" (click)="confirmDelete()"
+                            [disabled]="isDeleting">Eliminar</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </main>
 </div>

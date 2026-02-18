@@ -1,21 +1,21 @@
-.container {
+.c-container {
   display: flex;
   min-height: 100vh;
   background: var(--cyb-sys-color-beige-9);
 }
 
-.users {
+.c-users {
   flex: 1;
   padding: var(--cyb-sys-padding-10) var(--cyb-sys-padding-11);
   background: var(--cyb-sys-color-white-9);
   color: var(--cyb-sys-color-black-2);
 }
 
-.users__section {
+.c-users__section {
   margin-top: var(--cyb-sys-padding-2);
 }
 
-.users__section-header {
+.c-users__section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,7 +24,7 @@
 }
 
 @media (max-width: 960px) {
-  .users {
+  .c-users {
     padding: var(--cyb-sys-padding-9) var(--cyb-sys-padding-8);
   }
 }

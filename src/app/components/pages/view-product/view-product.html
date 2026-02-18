@@ -1,81 +1,81 @@
-<div class="container">
+<div class="c-container">
   <c-sidebar></c-sidebar>
 
-  <main class="view-product">
+  <main class="c-view-product">
     <c-form-card title="Detalle del producto" cardWidth="var(--cyb-sys-width-12)"
       titleSize="var(--cyb-sys-font-size-8)">
       @if (isLoading) {
-      <div class="view-product__loading">Cargando producto...</div>
+      <div class="c-view-product__loading">Cargando producto...</div>
       } @else if (!isLoaded) {
       @if (errorMessage) {
-      <div class="view-product__error">{{ errorMessage }}</div>
+      <div class="c-view-product__error">{{ errorMessage }}</div>
       }
-      <div class="btn-row">
-        <button type="button" class="btn" (click)="goBack()">Volver</button>
+      <div class="c-btn-row">
+        <button type="button" class="c-btn" (click)="goBack()">Volver</button>
       </div>
       } @else {
       <form (ngSubmit)="save()" #productForm="ngForm">
-        <div class="view-product__content">
-          <div class="view-product__media">
-            <img class="view-product__image" [src]="imagePreviewUrl" [alt]="name" loading="lazy" />
+        <div class="c-view-product__content">
+          <div class="c-view-product__media">
+            <img class="c-view-product__image" [src]="imagePreviewUrl" [alt]="name" loading="lazy" />
           </div>
 
-          <div class="view-product__details">
-            <div class="view-product__row">
-              <div class="form-group">
-                <label for="id" class="form__label">ID</label>
-                <input id="id" type="number" class="form__input" [value]="productId ?? ''" disabled />
+          <div class="c-view-product__details">
+            <div class="c-view-product__row">
+              <div class="c-form-group">
+                <label for="id" class="c-form__label">ID</label>
+                <input id="id" type="number" class="c-form__input" [value]="productId ?? ''" disabled />
               </div>
 
-              <div class="form-group">
-                <label for="price" class="form__label">Precio (€)</label>
-                <input id="price" type="number" class="form__input" name="price" [(ngModel)]="price" required min="0"
+              <div class="c-form-group">
+                <label for="price" class="c-form__label">Precio (€)</label>
+                <input id="price" type="number" class="c-form__input" name="price" [(ngModel)]="price" required min="0"
                   step="0.01" />
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="name" class="form__label">Nombre</label>
-              <input id="name" type="text" class="form__input" name="name" [(ngModel)]="name" required />
+            <div class="c-form-group">
+              <label for="name" class="c-form__label">Nombre</label>
+              <input id="name" type="text" class="c-form__input" name="name" [(ngModel)]="name" required />
             </div>
 
-            <div class="form-group">
-              <label for="description" class="form__label">Descripción</label>
-              <textarea id="description" class="form__input view-product__textarea" name="description"
+            <div class="c-form-group">
+              <label for="description" class="c-form__label">Descripción</label>
+              <textarea id="description" class="c-form__input c-form__input--view-product-textarea" name="description"
                 [(ngModel)]="description" required></textarea>
             </div>
 
-            <div class="view-product__row">
-              <div class="form-group">
-                <label for="categoryName" class="form__label">Categoría</label>
-                <input id="categoryName" type="text" class="form__input" name="categoryName"
+            <div class="c-view-product__row">
+              <div class="c-form-group">
+                <label for="categoryName" class="c-form__label">Categoría</label>
+                <input id="categoryName" type="text" class="c-form__input" name="categoryName"
                   [(ngModel)]="categoryName" />
               </div>
 
-              <div class="form-group">
-                <label for="style" class="form__label">Estilo (opcional)</label>
-                <input id="style" type="text" class="form__input" name="style" [(ngModel)]="style" />
+              <div class="c-form-group">
+                <label for="style" class="c-form__label">Estilo (opcional)</label>
+                <input id="style" type="text" class="c-form__input" name="style" [(ngModel)]="style" />
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="image" class="form__label">Imagen (URL o nombre)</label>
-              <input id="image" type="text" class="form__input" name="image" [(ngModel)]="image" />
+            <div class="c-form-group">
+              <label for="image" class="c-form__label">Imagen (URL o nombre)</label>
+              <input id="image" type="text" class="c-form__input" name="image" [(ngModel)]="image" />
             </div>
           </div>
         </div>
 
         @if (errorMessage) {
-        <div class="view-product__error view-product__error--inline">{{ errorMessage }}</div>
+        <div class="c-view-product__error c-view-product__error--inline">{{ errorMessage }}</div>
         }
 
-        <div class="btn-row view-product__actions">
-          <span class="view-product__delete" [class.is-disabled]="isSubmitting || isDeleting"
+        <div class="c-btn-row c-btn-row--view-product-actions">
+          <span class="c-view-product__delete" [class.g--is-disabled]="isSubmitting || isDeleting"
             (click)="openDeleteConfirm()" (keydown.enter)="openDeleteConfirm()" (keydown.space)="openDeleteConfirm()"
             role="button" tabindex="0">
             Eliminar
           </span>
-          <button type="submit" class="btn" [disabled]="productForm.invalid || isSubmitting || isDeleting">
+          <button type="submit" class="c-btn" [disabled]="productForm.invalid || isSubmitting || isDeleting">
             @if (isSubmitting) {
             Guardando...
             } @else {
@@ -88,15 +88,15 @@
     </c-form-card>
 
     @if (showDeleteConfirm) {
-      <div class="confirm-overlay">
-        <div class="confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
-          <h3 class="confirm-dialog__title">Eliminar producto</h3>
-          <p class="confirm-dialog__body">¿Estás seguro de borrar este artículo?</p>
-          <div class="confirm-dialog__actions">
-            <button type="button" class="btn" (click)="cancelDelete()" [disabled]="isDeleting">Cancelar</button>
+      <div class="c-confirm-overlay">
+        <div class="c-confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
+          <h3 class="c-confirm-dialog__title">Eliminar producto</h3>
+          <p class="c-confirm-dialog__body">¿Estás seguro de borrar este artículo?</p>
+          <div class="c-confirm-dialog__actions">
+            <button type="button" class="c-btn" (click)="cancelDelete()" [disabled]="isDeleting">Cancelar</button>
             <button
               type="button"
-              class="btn confirm-dialog__delete"
+              class="c-btn c-btn--confirm-dialog-delete"
               (click)="confirmDelete()"
               [disabled]="isDeleting"
             >

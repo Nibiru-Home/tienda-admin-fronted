@@ -1,10 +1,10 @@
-.container {
+.c-container {
   display: flex;
   min-height: 100vh;
   background: var(--cyb-sys-color-beige-9);
 }
 
-.error-404 {
+.c-error-404 {
   flex: 1;
   background-image: url('/images/404.png');
   background-size: cover;

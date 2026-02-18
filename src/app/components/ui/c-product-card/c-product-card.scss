@@ -5,7 +5,7 @@
     display: block;
 }
 
-.product-card {
+.c-product-card {
     display: flex;
     flex-direction: column;
     background-color: var(--cyb-sys-color-white-9);
@@ -17,7 +17,7 @@
     /* Ensure card takes full height of grid cell if needed */
     cursor: pointer;
 
-    .card-image {
+    .c-card-image {
         height: 200px;
         width: 100%;
         background-color: var(--cyb-sys-color-white-3);
@@ -29,14 +29,14 @@
         }
     }
 
-    .card-body {
+    .c-card-body {
         display: flex;
         flex-direction: column;
         flex: 1;
         gap: var(--cyb-sys-padding-4);
         padding: var(--cyb-sys-padding-9);
 
-        .card-title {
+        .c-card-title {
             font-size: var(--cyb-sys-font-size-5);
             font-weight: var(--cyb-sys-font-weight-7);
             margin: 0 0 var(--cyb-sys-margin-2) 0;
@@ -44,7 +44,7 @@
             font-family: var(--cyb-sys-font-family-body);
         }
 
-        .card-subtitle {
+        .c-card-subtitle {
             font-size: var(--cyb-sys-font-size-3);
             color: var(--cyb-sys-color-black-8);
             margin: 0 0 var(--cyb-sys-margin-5) 0;
@@ -55,14 +55,14 @@
             overflow: hidden;
         }
 
-        .card-price {
+        .c-card-price {
             font-size: var(--cyb-sys-font-size-4);
             font-weight: var(--cyb-sys-font-weight-7);
             color: var(--cyb-sys-color-black-2);
             margin-bottom: var(--cyb-sys-margin-3);
         }
 
-        .card-exit-icon {
+        .c-card-exit-icon {
             width: 36px;
             height: 36px;
             align-self: flex-end;

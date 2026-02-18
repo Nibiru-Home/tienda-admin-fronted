@@ -1,13 +1,13 @@
-<div class="product-card" (click)="onView()">
-    <div class="card-image">
+<div class="c-product-card" (click)="onView()">
+    <div class="c-card-image">
         <img [src]="imageUrl" [alt]="product.name">
     </div>
-    <div class="card-body">
-        <h3 class="card-title">{{ product.name }}</h3>
-        <p class="card-subtitle">{{ product.description }}</p>
-        <p class="card-price">{{ product.price }} €</p>
+    <div class="c-card-body">
+        <h3 class="c-card-title">{{ product.name }}</h3>
+        <p class="c-card-subtitle">{{ product.description }}</p>
+        <p class="c-card-price">{{ product.price }} €</p>
         <img
-            class="card-exit-icon"
+            class="c-card-exit-icon"
             src="/icons/contenedor-de-basura.png"
             alt="Contenedor de basura"
             (click)="onDelete($event)"

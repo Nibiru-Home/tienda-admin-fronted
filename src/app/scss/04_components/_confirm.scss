@@ -1,6 +1,6 @@
 // Generic confirmation overlay used across pages
 
-.confirm-overlay {
+.c-confirm-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.35);
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.confirm-dialog {
+.c-confirm-dialog {
   width: min(420px, 100%);
   background: var(--cyb-sys-color-white-9);
   border-radius: var(--cyb-sys-border-radius-7);
@@ -21,30 +21,30 @@
   color: var(--cyb-sys-color-black-2);
 }
 
-.confirm-dialog__title {
+.c-confirm-dialog__title {
   margin: 0 0 var(--cyb-sys-margin-4) 0;
   font-size: var(--cyb-sys-font-size-6);
   font-weight: var(--cyb-sys-font-weight-8);
 }
 
-.confirm-dialog__body {
+.c-confirm-dialog__body {
   margin: 0 0 var(--cyb-sys-margin-6) 0;
   font-size: var(--cyb-sys-font-size-4);
   color: var(--cyb-sys-color-black-3);
 }
 
-.confirm-dialog__actions {
+.c-confirm-dialog__actions {
   display: flex;
   justify-content: flex-end;
   gap: var(--cyb-sys-padding-5);
 }
 
-.confirm-dialog__delete {
+.c-confirm-dialog__delete {
   background-color: var(--cyb-sys-color-red-6);
   color: var(--cyb-sys-color-white-9);
   border: none;
 }
 
-.confirm-dialog__delete:hover {
+.c-confirm-dialog__delete:hover {
   background-color: var(--cyb-sys-color-red-7);
 }

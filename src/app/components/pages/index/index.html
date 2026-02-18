@@ -1,27 +1,27 @@
-<div class="container">
+<div class="c-container">
 
   <c-sidebar></c-sidebar>
 
-  <main class="dashboard">
-    <header class="dashboard__header">
-      <h1 class="dashboard__title">Bienvenido, {{ userName }}</h1>
-      <p class="dashboard__subtitle">
+  <main class="c-dashboard">
+    <header class="c-dashboard__header">
+      <h1 class="c-dashboard__title">Bienvenido, {{ userName }}</h1>
+      <p class="c-dashboard__subtitle">
         Gestiona tu catálogo, pedidos y contenido de forma sencilla.
       </p>
     </header>
 
     <c-dashboard-stats [stats]="stats"></c-dashboard-stats>
 
-    <section class="dashboard__section">
-      <header class="dashboard__section-header">
-        <h2 class="dashboard__section-title">Últimos productos añadidos</h2>
-        <button type="button" class="dashboard__section-action" (click)="goToAddProduct()">
+    <section class="c-dashboard__section">
+      <header class="c-dashboard__section-header">
+        <h2 class="c-dashboard__section-title">Últimos productos añadidos</h2>
+        <button type="button" class="c-dashboard__section-action" (click)="goToAddProduct()">
           + Añadir nuevo producto
         </button>
       </header>
 
-      <div class="dashboard__table-wrapper">
-        <table class="dashboard__table">
+      <div class="c-dashboard__table-wrapper">
+        <table class="c-dashboard__table">
           <thead>
             <tr>
               <th>Nombre</th>
@@ -33,17 +33,17 @@
             @for (product of latestProducts; track product.id) {
             <tr>
               <td>
-                <div class="dashboard__product-cell">
-                  <div class="dashboard__product-image">
+                <div class="c-dashboard__product-cell">
+                  <div class="c-dashboard__product-image">
                     @if (product.image) {
                     <img [src]="product.image" [alt]="product.name" loading="lazy" />
                     }
                   </div>
-                  <span class="dashboard__product-name">{{ product.name }}</span>
+                  <span class="c-dashboard__product-name">{{ product.name }}</span>
                 </div>
               </td>
               <td>{{ product.categoryName }}</td>
-              <td class="dashboard__action-cell">
+              <td class="c-dashboard__action-cell">
                 <c-product-table-actions [productId]="product.id" (edit)="editProduct($event)"
                   (remove)="deleteProduct($event)"></c-product-table-actions>
               </td>
@@ -55,15 +55,15 @@
       </div>
 
       @if (deleteCandidateId !== null) {
-        <div class="confirm-overlay">
-          <div class="confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
-            <h3 class="confirm-dialog__title">Eliminar producto</h3>
-            <p class="confirm-dialog__body">¿Estás seguro de borrar este artículo?</p>
-            <div class="confirm-dialog__actions">
-              <button type="button" class="btn" (click)="cancelDelete()" [disabled]="isDeleting">Cancelar</button>
+        <div class="c-confirm-overlay">
+          <div class="c-confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
+            <h3 class="c-confirm-dialog__title">Eliminar producto</h3>
+            <p class="c-confirm-dialog__body">¿Estás seguro de borrar este artículo?</p>
+            <div class="c-confirm-dialog__actions">
+              <button type="button" class="c-btn" (click)="cancelDelete()" [disabled]="isDeleting">Cancelar</button>
               <button
                 type="button"
-                class="btn confirm-dialog__delete"
+                class="c-btn c-btn--confirm-dialog-delete"
                 (click)="confirmDelete()"
                 [disabled]="isDeleting"
               >

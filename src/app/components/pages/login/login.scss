@@ -1,4 +1,4 @@
-.login-container {
+.c-login-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,11 +6,11 @@
     background-color: var(--cyb-sys-color-white-7);
 }
 
-.form-group {
+.c-form-group {
     margin-bottom: var(--cyb-sys-margin-6);
 }
 
-.error-message {
+.c-error-message {
     color: var(--cyb-sys-color-red-5);
     font-size: var(--cyb-sys-font-size-3);
     margin-bottom: var(--cyb-sys-margin-4);

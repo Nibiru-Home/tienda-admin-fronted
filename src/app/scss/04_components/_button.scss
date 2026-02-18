@@ -1,4 +1,4 @@
-.btn {
+.c-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -15,37 +15,37 @@
   transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
-.btn:hover {
+.c-btn:hover {
   background-color: var(--cyb-sys-color-beige-9);
   box-shadow: var(--cyb-sys-shadow-2);
   transform: translateY(-1px);
 }
 
-.btn:active {
+.c-btn:active {
   transform: translateY(0);
   box-shadow: var(--cyb-sys-shadow-1);
 }
 
-.btn:disabled {
+.c-btn:disabled {
   cursor: not-allowed;
   opacity: 0.65;
 }
 
-.btn--primary {
+.c-btn--primary {
   background-color: var(--cyb-sys-color-blue-gray-7);
 }
 
-.btn--primary:hover {
+.c-btn--primary:hover {
   background-color: var(--cyb-sys-color-light-blue-8);
 }
 
-.btn-row {
+.c-btn-row {
   display: flex;
   gap: var(--cyb-sys-padding-5);
   margin-top: var(--cyb-sys-margin-5);
   justify-content: flex-end;
 }
 
-.btn-row .btn {
+.c-btn-row .c-btn {
   flex: 0 0 auto;
 }

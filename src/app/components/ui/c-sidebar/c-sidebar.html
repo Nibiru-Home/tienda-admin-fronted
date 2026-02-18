@@ -1,4 +1,4 @@
-<div class="c-sidebar l-flex l-flex__direction--column l-flex__align-items--flex-start">
+<div class="c-sidebar">
 
   <div class="c-sidebar__logo">
     <img [src]="'/icons/' + logo" alt="Logo">
@@ -6,9 +6,9 @@
 
   @for (item of sideNavItems; track $index) {
     <a
-      class="l-flex l-flex__align-items--center"
+      class="c-sidebar__link"
       [routerLink]="item.route"
-      routerLinkActive="is-active"
+      routerLinkActive="g--is-active"
       [routerLinkActiveOptions]="{ exact: item.route === '/admin' }"
     >
       <img [src]="'/icons/' + item.icon">

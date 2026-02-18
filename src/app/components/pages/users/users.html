@@ -1,21 +1,21 @@
-<div class="container">
+<div class="c-container">
   <c-sidebar></c-sidebar>
 
-  <main class="users">
-    <section class="users__section">
-      <header class="users__section-header">
+  <main class="c-users">
+    <section class="c-users__section">
+      <header class="c-users__section-header">
         <h1>Gestión de usuarios</h1>
       </header>
 
       @if (isLoading) {
-      <div class="users__table-empty">Cargando usuarios...</div>
+      <div class="c-users__table-empty">Cargando usuarios...</div>
       } @else if (errorMessage) {
-      <div class="users__error">{{ errorMessage }}</div>
+      <div class="c-users__error">{{ errorMessage }}</div>
       } @else if (users.length === 0) {
-      <div class="users__table-empty">No hay usuarios registrados.</div>
+      <div class="c-users__table-empty">No hay usuarios registrados.</div>
       } @else {
-      <div class="users__table-wrapper">
-        <table class="users__table">
+      <div class="c-users__table-wrapper">
+        <table class="c-users__table">
           <thead>
             <tr>
               <th>Nombre</th>

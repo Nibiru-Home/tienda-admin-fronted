@@ -1,29 +1,29 @@
-<div class="container">
+<div class="c-container">
   <c-sidebar></c-sidebar>
 
-  <main class="categories">
-    <section class="categories__section">
-      <header class="categories__section-header">
+  <main class="c-categories">
+    <section class="c-categories__section">
+      <header class="c-categories__section-header">
         <div>
           <h1>Gestión de categorías</h1>
-          <p class="categories__subtitle">Crea y revisa las categorías visibles en el catálogo.</p>
+          <p class="c-categories__subtitle">Crea y revisa las categorías visibles en el catálogo.</p>
         </div>
-        <button class="btn-new-category" (click)="addCategory()">+ Nueva categoría</button>
+        <button class="c-btn-new-category" (click)="addCategory()">+ Nueva categoría</button>
       </header>
 
-      <div class="categories__grid">
-        <section class="categories__table-card">
-          <h2 class="categories__table-title">Listado</h2>
+      <div class="c-categories__grid">
+        <section class="c-categories__table-card">
+          <h2 class="c-categories__table-title">Listado</h2>
 
           @if (isLoading) {
-          <div class="categories__table-empty">Cargando categorías...</div>
+          <div class="c-categories__table-empty">Cargando categorías...</div>
           } @else if (errorMessage) {
-          <div class="categories__error">{{ errorMessage }}</div>
+          <div class="c-categories__error">{{ errorMessage }}</div>
           } @else if (categories.length === 0) {
-          <div class="categories__table-empty">No hay categorías registradas.</div>
+          <div class="c-categories__table-empty">No hay categorías registradas.</div>
           } @else {
-          <div class="categories__table-wrapper">
-            <table class="categories__table">
+          <div class="c-categories__table-wrapper">
+            <table class="c-categories__table">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -36,7 +36,7 @@
                   <td>{{ category.id }}</td>
                   <td>{{ category.name }}</td>
                   <td>
-                    <button class="btn-icon" (click)="deleteCategory(category.id)">
+                    <button class="c-btn-icon" (click)="deleteCategory(category.id)">
                       <img src="icons/contenedor-de-basura.png" alt="Eliminar" width="20" height="20">
                     </button>
                   </td>
@@ -53,27 +53,27 @@
   </main>
 
   @if (showCreateModal) {
-  <div class="confirm-overlay">
-    <div class="confirm-dialog" role="dialog" aria-modal="true" aria-label="Nueva categoría">
-      <h3 class="confirm-dialog__title">Nueva categoría</h3>
+  <div class="c-confirm-overlay">
+    <div class="c-confirm-dialog" role="dialog" aria-modal="true" aria-label="Nueva categoría">
+      <h3 class="c-confirm-dialog__title">Nueva categoría</h3>
 
-      <form (ngSubmit)="submit()" #categoryForm="ngForm" class="categories__form form">
-        <div class="form-group">
-          <label for="name" class="form__label">Nombre</label>
-          <input id="name" type="text" class="form__input" name="name" [(ngModel)]="name" required />
+      <form (ngSubmit)="submit()" #categoryForm="ngForm" class="c-categories__form c-categories__form--form">
+        <div class="c-form-group">
+          <label for="name" class="c-form__label">Nombre</label>
+          <input id="name" type="text" class="c-form__input" name="name" [(ngModel)]="name" required />
         </div>
 
         @if (formError) {
-        <div class="categories__error">{{ formError }}</div>
+        <div class="c-categories__error">{{ formError }}</div>
         }
 
         @if (successMessage) {
-        <div class="categories__success">{{ successMessage }}</div>
+        <div class="c-categories__success">{{ successMessage }}</div>
         }
 
-        <div class="confirm-dialog__actions">
-          <button type="button" class="btn" (click)="closeCreateModal()" [disabled]="isSubmitting">Cancelar</button>
-          <button type="button" class="btn btn--primary" (click)="submit()" [disabled]="isSubmitting">
+        <div class="c-confirm-dialog__actions">
+          <button type="button" class="c-btn" (click)="closeCreateModal()" [disabled]="isSubmitting">Cancelar</button>
+          <button type="button" class="c-btn c-btn--primary" (click)="submit()" [disabled]="isSubmitting">
             Guardar
           </button>
         </div>
@@ -82,13 +82,13 @@
   </div>
   }
   @if (deleteCandidateId !== null) {
-  <div class="confirm-overlay">
-    <div class="confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
-      <h3 class="confirm-dialog__title">Eliminar categoría</h3>
-      <p class="confirm-dialog__body">¿Estás seguro de borrar esta categoría?</p>
-      <div class="confirm-dialog__actions">
-        <button type="button" class="btn" (click)="cancelDelete()" [disabled]="isDeleting">Cancelar</button>
-        <button type="button" class="btn confirm-dialog__delete" (click)="confirmDelete()" [disabled]="isDeleting">
+  <div class="c-confirm-overlay">
+    <div class="c-confirm-dialog" role="dialog" aria-modal="true" aria-label="Confirmar eliminación">
+      <h3 class="c-confirm-dialog__title">Eliminar categoría</h3>
+      <p class="c-confirm-dialog__body">¿Estás seguro de borrar esta categoría?</p>
+      <div class="c-confirm-dialog__actions">
+        <button type="button" class="c-btn" (click)="cancelDelete()" [disabled]="isDeleting">Cancelar</button>
+        <button type="button" class="c-btn c-btn--confirm-dialog-delete" (click)="confirmDelete()" [disabled]="isDeleting">
           Eliminar
         </button>
       </div>

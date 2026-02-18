@@ -1,38 +1,38 @@
-<div class="container">
+<div class="c-container">
   <c-sidebar></c-sidebar>
 
-  <main class="add-product">
+  <main class="c-add-product">
     <c-form-card title="Añadir producto" titleSize="var(--cyb-sys-font-size-9)">
       <form (ngSubmit)="submit()" #addProductForm="ngForm">
-        <div class="form-group">
-          <label for="name" class="form__label">Nombre</label>
+        <div class="c-form-group">
+          <label for="name" class="c-form__label">Nombre</label>
           <input
             id="name"
             type="text"
-            class="form__input"
+            class="c-form__input"
             name="name"
             [(ngModel)]="name"
             required
           />
         </div>
 
-        <div class="form-group">
-          <label for="description" class="form__label">Descripción</label>
+        <div class="c-form-group">
+          <label for="description" class="c-form__label">Descripción</label>
           <textarea
             id="description"
-            class="form__input add-product__textarea"
+            class="c-form__input c-form__input--add-product-textarea"
             name="description"
             [(ngModel)]="description"
             required
           ></textarea>
         </div>
 
-        <div class="form-group">
-          <label for="price" class="form__label">Precio (€)</label>
+        <div class="c-form-group">
+          <label for="price" class="c-form__label">Precio (€)</label>
           <input
             id="price"
             type="number"
-            class="form__input"
+            class="c-form__input"
             name="price"
             [(ngModel)]="price"
             required
@@ -41,13 +41,13 @@
           />
         </div>
 
-        <div class="add-product__row">
-          <div class="form-group">
-            <label for="categoryId" class="form__label">ID categoría</label>
+        <div class="c-add-product__row">
+          <div class="c-form-group">
+            <label for="categoryId" class="c-form__label">ID categoría</label>
             <input
               id="categoryId"
               type="number"
-              class="form__input"
+              class="c-form__input"
               name="categoryId"
               [(ngModel)]="categoryId"
               min="1"
@@ -55,40 +55,40 @@
             />
           </div>
 
-          <div class="form-group">
-            <label for="style" class="form__label">Estilo (opcional)</label>
+          <div class="c-form-group">
+            <label for="style" class="c-form__label">Estilo (opcional)</label>
             <input
               id="style"
               type="text"
-              class="form__input"
+              class="c-form__input"
               name="style"
               [(ngModel)]="style"
             />
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="image" class="form__label">Imagen (URL o nombre) (opcional)</label>
+        <div class="c-form-group">
+          <label for="image" class="c-form__label">Imagen (URL o nombre) (opcional)</label>
           <input
             id="image"
             type="text"
-            class="form__input"
+            class="c-form__input"
             name="image"
             [(ngModel)]="image"
           />
         </div>
 
         @if (errorMessage) {
-          <div class="add-product__error">{{ errorMessage }}</div>
+          <div class="c-add-product__error">{{ errorMessage }}</div>
         }
 
-        <div class="btn-row">
-          <button type="button" class="btn" (click)="cancel()">
+        <div class="c-btn-row">
+          <button type="button" class="c-btn" (click)="cancel()">
             Cancelar
           </button>
           <button
             type="submit"
-            class="btn btn-save"
+            class="c-btn c-btn--save"
             [disabled]="isSubmitting"
           >
             Guardar

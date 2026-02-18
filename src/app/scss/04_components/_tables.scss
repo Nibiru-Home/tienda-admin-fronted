@@ -1,6 +1,6 @@
 // Shared table styles for dashboard and users views
 
-.dashboard__table-wrapper {
+.c-dashboard__table-wrapper {
   overflow-x: auto;
   border-radius: var(--cyb-sys-border-radius-8);
   border: 1px solid var(--cyb-sys-color-beige-7);
@@ -8,47 +8,47 @@
   box-shadow: var(--cyb-sys-shadow-2);
 }
 
-.dashboard__table {
+.c-dashboard__table {
   width: 100%;
   min-width: 640px;
 }
 
-.dashboard__table th,
-.dashboard__table td {
+.c-dashboard__table th,
+.c-dashboard__table td {
   padding: var(--cyb-sys-padding-6) var(--cyb-sys-padding-8);
 }
 
-.dashboard__table th {
+.c-dashboard__table th {
   text-align: left;
   font-size: var(--cyb-sys-font-size-4);
   font-weight: var(--cyb-sys-font-weight-7);
   color: var(--cyb-sys-color-blue-gray-4);
 }
 
-.dashboard__table td {
+.c-dashboard__table td {
   border-top: 1px solid var(--cyb-sys-color-beige-7);
   font-size: var(--cyb-sys-font-size-5);
   font-weight: var(--cyb-sys-font-weight-5);
   color: var(--cyb-sys-color-black-2);
 }
 
-.dashboard__table tbody tr:hover {
+.c-dashboard__table tbody tr:hover {
   background: var(--cyb-sys-color-beige-9);
 }
 
-.dashboard__table-empty {
+.c-dashboard__table-empty {
   padding: var(--cyb-sys-padding-9) var(--cyb-sys-padding-8);
   text-align: center;
   color: var(--cyb-sys-color-blue-gray-4);
 }
 
-.dashboard__product-cell {
+.c-dashboard__product-cell {
   display: flex;
   align-items: center;
   gap: var(--cyb-sys-padding-6);
 }
 
-.dashboard__product-image {
+.c-dashboard__product-image {
   width: 44px;
   height: 44px;
   border-radius: var(--cyb-sys-border-radius-6);
@@ -58,17 +58,17 @@
   flex-shrink: 0;
 }
 
-.dashboard__product-image img {
+.c-dashboard__product-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.dashboard__product-name {
+.c-dashboard__product-name {
   font-weight: var(--cyb-sys-font-weight-7);
 }
 
-.dashboard__status {
+.c-dashboard__status {
   display: inline-flex;
   align-items: center;
   padding: var(--cyb-sys-padding-2) var(--cyb-sys-padding-4);
@@ -80,17 +80,17 @@
   background: var(--cyb-sys-color-white-9);
 }
 
-.dashboard__status--inactive {
+.c-dashboard__status--inactive {
   color: var(--cyb-sys-color-blue-gray-4);
   background: var(--cyb-sys-color-beige-9);
 }
 
-.dashboard__action-cell {
+.c-dashboard__action-cell {
   text-align: right;
   padding-right: var(--cyb-sys-padding-12);
 }
 
-.dashboard__action-button {
+.c-dashboard__action-button {
   width: 40px;
   height: 40px;
   border-radius: var(--cyb-sys-border-radius-7);
@@ -102,26 +102,26 @@
   cursor: pointer;
 }
 
-.dashboard__action-button:hover {
+.c-dashboard__action-button:hover {
   background: var(--cyb-sys-color-beige-9);
   border-color: var(--cyb-sys-color-beige-7);
 }
 
-.users__table-empty {
+.c-users__table-empty {
   padding: var(--cyb-sys-padding-9) var(--cyb-sys-padding-8);
   text-align: center;
   color: var(--cyb-sys-color-blue-gray-4);
   font-family: var(--cyb-sys-font-family-body);
 }
 
-.users__error {
+.c-users__error {
   padding: var(--cyb-sys-padding-9) var(--cyb-sys-padding-8);
   text-align: center;
   font-family: var(--cyb-sys-font-family-body);
   color: var(--cyb-sys-color-red-5);
 }
 
-.users__table-wrapper {
+.c-users__table-wrapper {
   overflow-x: auto;
   border-radius: var(--cyb-sys-border-radius-8);
   border: 1px solid var(--cyb-sys-color-beige-7);
@@ -129,36 +129,36 @@
   box-shadow: var(--cyb-sys-shadow-2);
 }
 
-.users__table {
+.c-users__table {
   width: 100%;
   min-width: 780px;
 }
 
-.users__table th,
-.users__table td {
+.c-users__table th,
+.c-users__table td {
   padding: var(--cyb-sys-padding-6) var(--cyb-sys-padding-8);
   text-align: left;
 }
 
-.users__table th {
+.c-users__table th {
   font-size: var(--cyb-sys-font-size-4);
   font-weight: var(--cyb-sys-font-weight-7);
   color: var(--cyb-sys-color-blue-gray-4);
 }
 
-.users__table td {
+.c-users__table td {
   border-top: 1px solid var(--cyb-sys-color-beige-7);
   font-size: var(--cyb-sys-font-size-5);
   font-weight: var(--cyb-sys-font-weight-5);
   color: var(--cyb-sys-color-black-2);
 }
 
-.users__table tbody tr:hover {
+.c-users__table tbody tr:hover {
   background: var(--cyb-sys-color-beige-9);
 }
 
 @media (max-width: 960px) {
-  .dashboard__table {
+  .c-dashboard__table {
     min-width: 560px;
   }
 }

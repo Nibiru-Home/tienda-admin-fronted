@@ -56,19 +56,19 @@ export class Orders implements OnInit {
     getStatusClass(status: string): string {
         const normalizedStatus = status.trim().toUpperCase();
         if (normalizedStatus === 'PAID' || normalizedStatus === 'COMPLETED') {
-            return 'orders__status orders__status--ok';
+            return 'c-orders__status c-orders__status--ok';
         }
         if (normalizedStatus === 'PENDING') {
-            return 'orders__status orders__status--pending';
+            return 'c-orders__status c-orders__status--pending';
         }
         if (normalizedStatus === 'CANCELLED') {
-            return 'orders__status orders__status--cancelled';
+            return 'c-orders__status c-orders__status--cancelled';
         }
-        return 'orders__status';
+        return 'c-orders__status';
     }
 
     formatAmount(amount: number): string {
-        return new Intl.NumberFormat('es-ES', {
+        return new Intl.NumberFormat('es-es', {
             style: 'currency',
             currency: 'EUR'
         }).format(Number.isFinite(amount) ? amount : 0);
@@ -88,7 +88,7 @@ export class Orders implements OnInit {
             return '-';
         }
 
-        return new Intl.DateTimeFormat('es-ES', {
+        return new Intl.DateTimeFormat('es-es', {
             dateStyle: 'short',
             timeStyle: 'short'
         }).format(parsed);
